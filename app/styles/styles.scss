@@ -1,0 +1,23 @@
+/*  img/image.jpg  */
+// - Variables
+@import "variables";
+// - Mixins
+@import "mixins";
+@import "print";
+
+body{
+     background:#f00;
+     color:#fff;
+     background: url("../img/AjaxLoader.gif") no-repeat center center;
+     h1{
+          color:#000;
+          text-align:center;
+
+     }
+     .main-left,.main-right{
+          background-color: #fff;
+          border:1px solid #ddd;
+          border-radius: 4px;
+     }
+
+}
