@@ -16,8 +16,141 @@ body{
      }
      .main-left,.main-right{
           background-color: #fff;
+          padding: 1em;
+          h2{
+               font-size: 20px;
+          }
+     }
+     .main-left{
           border:1px solid #ddd;
           border-radius: 4px;
+
      }
+     .card-wrapper {
+          margin:0 auto;
+          .theme-wrapper{
+               width: 10cm;
+               margin: 0 auto 20px auto;
+     }
+     .card-preview,.card-preview.default{
+          width:10cm;
+          height:5cm;
+          border:1px solid #aaa;
+          border-radius:4px;
+          margin:0 auto;
+          position:relative;
+          section{
+
+          }
+          section.logo{
+               img{
+                    width:50px;
+                    height:50px;
+               }
+          }
+          section.personal-details{
+               font-size:10px;
+               span.pdata{
+                    padding:1px 0;
+                    margin:0;
+                    display:block;
+               }
+               .name{
+                         font-size: 20px;
+               }
+               .email{
+
+               }
+               .www {
+
+               }
+               .tel{
+
+               }
+               .mob{
+
+               }
+               .address1{
+
+               }
+               .address2{
+
+               }
+          }
+     }
+     //#################### themes ###################
+     //#################### second theme ###################
+     .card-preview.theme2{
+          section.logo{
+               img{
+                    width:50px;
+                    height:50px;
+               }
+          }
+          section.personal-details {
+               span.pdata {
+
+               }
+               .name {
+
+               }
+               .email {
+
+               }
+               .www {
+
+               }
+               .tel {
+
+               }
+               .mob {
+
+               }
+               .address1 {
+
+               }
+               .address2 {
+
+               }
+          }
+     }
+     //#################### third theme ###################
+     .card-preview.theme3{
+          section.logo{
+               img{
+                    width:50px;
+                    height:50px;
+               }
+          }
+          section.personal-details {
+               span.pdata {
+
+               }
+               .name {
+
+               }
+               .email {
+
+               }
+               .www {
+
+               }
+               .tel {
+
+               }
+               .mob {
+
+               }
+               .address1 {
+
+               }
+               .address2 {
+
+               }
+          }
+     }
+     //#################### END  themes ###################
+     }
+
 
 }

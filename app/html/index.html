@@ -9,37 +9,78 @@
     <meta name="keywords" content="javascipt,jQuery,web optimisation,web development,cro " />
     <!-- Latest compiled and minified CSS -->
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">-->
+
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
     <link rel="stylesheet" type="text/css" href="styles/vendor/bootstrap.min.css">
+
+    <script src="scripts/vendor/angular.min.js"></script>
+    <script src="scripts/vendor/angular-resource.min.js"></script>
+    <script src="scripts/vendor/angular-route.min.js"></script>
     <title>CardMaster app</title>
 </head>
-<body ng-app="cardMaster">
-    <h1>CardMaster app</h1>
+<body data-ng-app="cardMaster" data-ng-controller='cardMaster' data-ng-init="name='John Doe';email='myemail@domain.com';tel='0203434567';mob='07401236993';address1='14a Claybury Broadway';city='Ilford';pc='IG5 0LQ';theme='default'">
+    <h1 data-html="Online Business Card maker"></h1>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4 text-left main-left">
-                <p>Selection inputs will be here</p>
-                <form>
+            <div class="col-md-3 text-left main-left">
+                <h2>Your details</h2>
+                <p>Fill in the details you want to be shown in your business card</p>
+                <form name="cardDetails">
                     <div class="form-group">
-                        <label for="fname">Full Name:</label>
-                        <input type="text" class="form-control" name="fname" id="fname" placeholder="Your full name here" />
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Your full name here" data-ng-model="name" />
+                    </div>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email address:</label>
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                        <div class="input-group">
+                            <span class="input-group-addon">@</span>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Email" data-ng-model="email" />
+                    </div>
                     </div>
                     <div class="form-group">
-                        <label for="address1">Address line 1:</label>
-                        <input type="text" class="form-control" id="address1" name="address1" placeholder="Address line 1">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></span>
+                            <input type="text" class="form-control" name="www" id="www" placeholder="Your website" data-ng-model="www" />
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="address2">Address line 2:</label>
-                        <input type="text" class="form-control" id="address2" name="address2" placeholder="Address line 2">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></span>
+                            <input type="tel" class="form-control" name="tel" id="tel" placeholder="Landline number" data-ng-model="tel" />
+                    </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></span>
+                            <input type="tel" class="form-control" name="mob" id="mob" placeholder="Mobile number" data-ng-model="mob" />
+                    </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-road" aria-hidden="true"></span></span>
+                        <input type="text" class="form-control" id="address1" name="address1" placeholder="Address line 1" data-ng-model="address1" />
+                    </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></span>
+                        <input type="text" class="form-control" id="city" name="city" placeholder="City" data-ng-model="city" />
+                    </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-inbox" aria-hidden="true"></span></span>
+                        <input type="text" class="form-control" id="pc" name="pc" placeholder="Postcode" data-ng-model="pc" />
+                    </div>
                     </div>
                     <div class="form-group">
                         <label for="bimage">Background image select</label>
                         <input type="file" id="bimage" name="bimage">
-                        <p class="help-block">Example block-level help text here.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="bimage">Company image select</label>
+                        <input type="file" id="cimage" name="cimage">
                     </div>
                     <div class="checkbox">
                         <label>
@@ -50,26 +91,49 @@
 
                 </form>
             </div>
+            <div class="col-md-1 hidden-xs"></div>
             <div class="col-md-8 text-left main-right">
-                <p>Result will be here</p>
+                <div class="card-wrapper">
+                    <div class="form-group theme-wrapper">
+                        <label for="theme">Select a theme:</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">Theme: </span>
+                            <select type="text" class="form-control" id="theme" name="theme" data-ng-model="theme">
+                                <option value="default" default>Default</option>
+                                <option value="theme2">Theme 2</option>
+                                <option value="theme3">Theme 3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-preview {{theme}}">
+                    <section class="logo col-md-6">
+                        <img src="" alt="company logo" />
+                    </section>
+                    <section class="personal-details col-md-6 ">
+                            <span data-ng-show="cardDetails.name" data-ng-bind="name" class="pdata name"></span>
+                            <span data-ng-show="cardDetails.email" data-ng-bind="email" class="pdata email"></span>
+                            <span data-ng-show="cardDetails.www" data-ng-bind="www" class="pdata www"></span>
+                            <span data-ng-show="cardDetails.tel" data-ng-bind="tel" class="pdata tel"></span>
+                            <span data-ng-show="cardDetails.mob" data-ng-bind="mob" class="pdata mob"></span>
+                            <span data-ng-show="cardDetails.address1" data-ng-bind="address1" class="pdata address1"></span>
+                            <span data-ng-show="cardDetails.city || cardDetails.pc" class="city pc pdata ">{{city | uppercase}}<span class="comma">,</span> {{pc | uppercase}}</span>
+                    </section>
+                </div>
             </div>
         </div>
     </div>
+    </div>
 <!--################## img directory img/image.jpg ######################### -->
-
 
 
 <!--####################################################-->
 <!--###################### scripts #####################-->
 <!--####################################################-->
-    <script src="scripts/vendor/jquery-2.2.0.min.js"></script>
-    <script src="scripts/vendor/bootstrap.min.js"></script>
-    <script src="scripts/vendor/angular.min.js"></script>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>-->
-      <!--   <script src="scripts/vendor/angular-route.min.js"></script>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
 <!-- Latest compiled and minified JavaScript -->
 <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>-->
+    <script src="scripts/vendor/jquery-1.12.0.min.js"></script>
+    <script src="scripts/vendor/bootstrap.min.js"></script>
     <script src="scripts/custom-scripts.js"></script>
 </body>
 </html>
