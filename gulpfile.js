@@ -17,6 +17,7 @@ var del = require('del');
 var runSequence = require('run-sequence');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
+var htmlmin = require('gulp-htmlmin');
 var reveasy = require("gulp-rev-easy");
 var rename = require("gulp-rename");
 
@@ -110,11 +111,7 @@ gulp.task('html', function () {
         .pipe(assets.restore())
         .pipe($.useref())
         // Minify Any HTML
-        .pipe($.if('*.html', $.minifyHtml({
-            empty: true,
-            comments: false,
-            conditionals: true
-        })))
+        .pipe($.if('*.html', htmlmin({collapseWhitespace: true})))
         // Output Files
         .pipe(gulp.dest('app/public'))
         .pipe($.size({title: 'html after compression'}));
@@ -133,6 +130,7 @@ gulp.task('js',function(){
 // Watch Files For Changes & Reload
 gulp.task('serve', ['styles'], function () {
     browserSync({
+        port: "3001",
         notify: false,
         logPrefix: 'NINJA-DEV',
         // https: true,
@@ -141,7 +139,7 @@ gulp.task('serve', ['styles'], function () {
 
     gulp.watch(['app/html/**/*.html'], reload);
     gulp.watch(['app/styles/**/*.{scss,css}'], ['styles', reload]);
-    gulp.watch(['app/scripts/**/*.js'], ['jshint', reload]);
+    gulp.watch(['app/scripts/**/*.js'], reload); //['jshint', reload]
     gulp.watch(['app/img/**/*'], reload);
 });
 
@@ -153,9 +151,13 @@ gulp.task('serve:public', ['default'], function () {
         // https: true,
         server: 'public'
     });
+    gulp.watch(['app/html/**/*.html'], reload);
+    gulp.watch(['app/styles/**/*.{scss,css}'], ['styles', reload]);
+    gulp.watch(['app/scripts/**/*.js'], reload); //['jshint', reload]
+    gulp.watch(['app/img/**/*'], reload);
 });
 
 // Build Production Files, the Default Task
-gulp.task('default', ['clean'], function (cb) {
-    runSequence('styles', ['html', 'img', 'fonts', 'copy', 'js'], cb);
+gulp.task('default', ['clean'], function (callback) {
+    runSequence('styles', ['html', 'img', 'fonts', 'copy', 'js'], callback);
 });

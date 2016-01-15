@@ -9,23 +9,23 @@
     <meta name="keywords" content="javascipt,jQuery,web optimisation,web development,cro " />
     <!-- Latest compiled and minified CSS -->
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">-->
-
-    <link rel="stylesheet" type="text/css" href="styles/styles.css">
     <link rel="stylesheet" type="text/css" href="styles/vendor/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
 
     <script src="scripts/vendor/angular.min.js"></script>
     <script src="scripts/vendor/angular-resource.min.js"></script>
     <script src="scripts/vendor/angular-route.min.js"></script>
     <title>CardMaster app</title>
 </head>
-<body data-ng-app="cardMaster" data-ng-controller='cardMaster' data-ng-init="name='John Doe';email='myemail@domain.com';tel='0203434567';mob='07401236993';address1='14a Claybury Broadway';city='Ilford';pc='IG5 0LQ';theme='default'">
+<body data-ng-app="cardMaster" data-ng-controller='cardMaster' data-ng-init="name='John Doe';email='myemail@domain.com';tel='0203434567';mob='07401236993';address1='14a Claybury Broadway';city='Ilford';pc='IG5 0LQ';theme='default';xPos='0.1';yPos='0.1';logoSize='20'">
     <h1 data-html="Online Business Card maker"></h1>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3 text-left main-left">
+            <!-- Left container to host the text options of card-->
+            <div class="col-md-3 text-left main-left bg-primary">
                 <h2>Your details</h2>
                 <p>Fill in the details you want to be shown in your business card</p>
-                <form name="cardDetails">
+                <form name="cardDetails" id="cardDetails">
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
@@ -75,30 +75,84 @@
                     </div>
                     </div>
                     <div class="form-group">
-                        <label for="bimage">Background image select</label>
+                        <label for="bimage">Background image</label>
                         <input type="file" id="bimage" name="bimage">
+                        <p class="imageError bg-danger" style="display:none;">Only image files are supported - jpg, jpeg, png, gif.</p>
                     </div>
                     <div class="form-group">
-                        <label for="bimage">Company image select</label>
+                        <label for="cimage">Company logo</label>
                         <input type="file" id="cimage" name="cimage">
+                        <p class="imageError bg-danger" style="display:none;">Only image files are supported - jpg, jpeg, png, gif.</p>
                     </div>
-                    <div class="checkbox">
+                    <div class="checkbox hidden">
                         <label>
                             <input type="checkbox"> Check me out
                         </label>
                     </div>
-                    <button type="submit" class="btn btn-default">Preview</button>
-
+                    <button type="submit" class="btn btn-default hidden">Preview</button>
+                    <div id="message"></div>
                 </form>
             </div>
-            <div class="col-md-1 hidden-xs"></div>
-            <div class="col-md-8 text-left main-right">
+            <!-- Middle conatainer for the customisation of the card layout -->
+            <div class="col-md-3 main-center">
+                <h2>Customise appearance</h2>
+                <form class="noSubmit logoCustomise bordered padded">
+                    <h3 class="text-center">Logo</h3>
+                    <div class="form-group xPos">
+                        <div class="input-group">
+                            <span class="input-group-addon">Logo x-pos</span>
+                            <input type="range" class="form-control"  name="xPos" min="0" step='0.1'  max="8.5" value="0.1" id="xPos" data-ng-model="xPos" />
+                        </div>
+                    </div>
+                    <div class="form-group yPos">
+                        <div class="input-group">
+                            <span class="input-group-addon">Logo y-pos</span>
+                            <input type="range" class="form-control"  name="yPos" min="0" step='0.1' max="3.5" value="0.1" id="yPos" data-ng-model="yPos" />
+                        </div>
+                    </div>
+                    <div class="form-group logoSize">
+                        <div class="input-group">
+                            <span class="input-group-addon">Logo size</span>
+                            <input type="range" class="form-control"  name="logoSize" min="20" step='1' max="100" value="30" id="logoSize" data-ng-model="logoSize" />
+                        </div>
+                    </div>
+                </form>
+
+                <form class="noSubmit logoCustomise bordered padded">
+                    <h3 class="text-center">Text</h3>
+                    <div class="form-group fSize">
+                        <div class="input-group">
+                            <span class="input-group-addon">Text size</span>
+                            <input type="range" class="form-control"  name="fSize" min="10" step='1'  max="18" value="0.1" id="fSize" />
+                        </div>
+                    </div>
+                    <div class="form-group fColor">
+                        <div class="input-group">
+                            <span class="input-group-addon">Logo color</span>
+                            <input type="text" class="form-control"  name="fColor" id="fColor" />
+                        </div>
+                    </div>
+                    <div class="form-group fType">
+                        <div class="input-group">
+                            <span class="input-group-addon">Logo size</span>
+                            <select class="form-control"  name="fType" id="fType">
+                                <option value="Helvetica Neue" default>Default</option>
+                                <option value="Helvetica">Helvetica</option>
+                                <option value="sans-serif">Sans-serif</option>
+                                <option value="Arial">Arial</option>
+                                <option value="cursive">Cursive</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Right container to host the visual of the card -->
+            <div class="col-md-6 text-left main-right ">
                 <div class="card-wrapper">
                     <div class="form-group theme-wrapper">
-                        <label for="theme">Select a theme:</label>
                         <div class="input-group">
                             <span class="input-group-addon">Theme: </span>
-                            <select type="text" class="form-control" id="theme" name="theme" data-ng-model="theme">
+                            <select class="form-control" id="theme" name="theme" data-ng-model="theme">
                                 <option value="default" default>Default</option>
                                 <option value="theme2">Theme 2</option>
                                 <option value="theme3">Theme 3</option>
@@ -107,14 +161,13 @@
                     </div>
                     <div class="card-preview {{theme}}">
                     <section class="logo col-md-6">
-                        <img src="" alt="company logo" />
+                            <div class="companyLogo"></div>
                     </section>
                     <section class="personal-details col-md-6 ">
                             <span data-ng-show="cardDetails.name" data-ng-bind="name" class="pdata name"></span>
                             <span data-ng-show="cardDetails.email" data-ng-bind="email" class="pdata email"></span>
                             <span data-ng-show="cardDetails.www" data-ng-bind="www" class="pdata www"></span>
-                            <span data-ng-show="cardDetails.tel" data-ng-bind="tel" class="pdata tel"></span>
-                            <span data-ng-show="cardDetails.mob" data-ng-bind="mob" class="pdata mob"></span>
+                            <span data-ng-show="cardDetails.tel || cardDetails.mob" class="pdata tel mob">{{tel}}<span class="comma">,</span> {{mob}}</span>
                             <span data-ng-show="cardDetails.address1" data-ng-bind="address1" class="pdata address1"></span>
                             <span data-ng-show="cardDetails.city || cardDetails.pc" class="city pc pdata ">{{city | uppercase}}<span class="comma">,</span> {{pc | uppercase}}</span>
                     </section>
@@ -123,6 +176,7 @@
         </div>
     </div>
     </div>
+    <div id="loading"></div>
 <!--################## img directory img/image.jpg ######################### -->
 
 
