@@ -71,12 +71,12 @@ app.controller('cardMaster' , function($scope){
     }));
     /*####################################################*/
     //change x position of Logo
-    jQuery('#xPos').off('change').on('change',function(e){
+   /* jQuery('#xPos').off('change').on('change',function(e){
         jQuery('.companyLogo').css('left',jQuery(e.target).val()+'cm')
     });
     jQuery('#yPos').off('change').on('change',function(e){
         jQuery('.companyLogo').css('top',jQuery(e.target).val()+'cm')
-    });
+    });*/
     jQuery('#logoSize').off('change').on('change',function(e){
         jQuery('.companyLogo').css({'width':jQuery(e.target).val()+'px','height':jQuery(e.target).val()+'px'})
     });
@@ -107,7 +107,7 @@ app.directive('cardPreview' , function(){
 app.directive('myDraggable', ['$document', function($document) {
     return {
         link: function (scope, element, attr) {
-            var startX = 0, startY = 0, x = 0, y = 0;
+            var startX = element.offsetLeft, startY = element.offsetTop, x = 0, y = 0;
 
             /*element.css({
                 position: 'relative',
