@@ -9,6 +9,7 @@
     <meta name="keywords" content="javascipt,jQuery,web optimisation,web development,cro " />
     <!-- Latest compiled and minified CSS -->
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">-->
+    <link rel="stylesheet" type="text/css" href="styles/vendor/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="styles/vendor/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
 
@@ -17,7 +18,7 @@
     <script src="scripts/vendor/angular-route.min.js"></script>
     <title>CardMaster app</title>
 </head>
-<body data-ng-app="cardMaster" data-ng-controller='cardMaster' data-ng-init="name='John Doe';email='myemail@domain.com';tel='0203434567';mob='07401236993';address1='14a Claybury Broadway';city='Ilford';pc='IG5 0LQ';theme='default';xPos='0.1';yPos='0.1';logoSize='20'">
+<body data-ng-app="cardMaster" data-ng-controller='cardMaster' data-ng-init="name='John Doe';occupation='Front-end Web Developer';email='myemail@domain.com';tel='0203434567';mob='07401236993';address1='14a Claybury Broadway';city='Ilford';pc='IG5 0LQ';theme='default';xPos='0.1';yPos='0.1';logoSize='20';fSize=12;fxpos=5;fypos=2;fcolor='#000000';fweight=400;fType='Helvetica Neue';">
     <h1 data-html="Online Business Card maker"></h1>
     <div class="container-fluid">
         <div class="row">
@@ -31,6 +32,12 @@
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
                         <input type="text" class="form-control" name="name" id="name" placeholder="Your full name here" data-ng-model="name" />
                     </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+                            <input type="text" class="form-control" name="occupation" id="occupation" placeholder="Your occupation" data-ng-model="occupation" />
+                        </div>
                     </div>
                     <div class="form-group">
                         <div class="input-group">
@@ -94,53 +101,80 @@
                 </form>
             </div>
             <!-- Middle conatainer for the customisation of the card layout -->
-            <div class="col-md-3 main-center">
+            <div class="col-md-3 main-center  bg-info" >
                 <h2>Customise appearance</h2>
-                <form class="noSubmit logoCustomise bordered padded">
+                <!-- Center container for logo positionaing -->
+                <form class="noSubmit logoCustomise ">
                     <h3 class="text-center">Logo</h3>
                     <div class="form-group xPos">
                         <div class="input-group">
-                            <span class="input-group-addon">Logo x-pos</span>
-                            <input type="range" class="form-control"  name="xPos" min="0" step='0.1'  max="8.5" value="0.1" id="xPos" data-ng-model="xPos" />
+                            <span class="input-group-addon lbl"><span class="glyphicon glyphicon-resize-horizontal" aria-hidden="true"></span></span>
+                            <input type="range" class="form-control"  name="xPos" min="0" step='0.1'  max="7" value="0.1" id="xPos" data-ng-model="xPos" />
+                            <span class="input-group-addon slbl" data-ng-bind="xPos"></span>
                         </div>
                     </div>
                     <div class="form-group yPos">
                         <div class="input-group">
-                            <span class="input-group-addon">Logo y-pos</span>
+                            <span class="input-group-addon lbl"><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span></span>
                             <input type="range" class="form-control"  name="yPos" min="0" step='0.1' max="3.5" value="0.1" id="yPos" data-ng-model="yPos" />
+                            <span class="input-group-addon slbl" data-ng-bind="yPos"></span>
                         </div>
                     </div>
                     <div class="form-group logoSize">
                         <div class="input-group">
-                            <span class="input-group-addon">Logo size</span>
+                            <span class="input-group-addon lbl">Logo size</span>
                             <input type="range" class="form-control"  name="logoSize" min="20" step='1' max="100" value="30" id="logoSize" data-ng-model="logoSize" />
+                            <span class="input-group-addon slbl">{{logoSize}}x{{logoSize}}px</span>
                         </div>
                     </div>
                 </form>
-
-                <form class="noSubmit logoCustomise bordered padded">
+                <!-- Center container for text customisation -->
+                <form class="noSubmit textBoxCustomise ">
                     <h3 class="text-center">Text</h3>
+                    <div class="form-group fxpos">
+                        <div class="input-group">
+                            <span class="input-group-addon lbl"><span class="glyphicon glyphicon-resize-horizontal" aria-hidden="true"></span></span>
+                            <input type="range" class="form-control"  name="fxpos" min="0" step='0.1'  max="7" value="6" id="fxpos" data-ng-model="fxpos" />
+                            <span class="input-group-addon slbl" data-ng-bind="fxpos"></span>
+                        </div>
+                    </div>
+                    <div class="form-group fypos">
+                        <div class="input-group">
+                            <span class="input-group-addon lbl"><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span></span>
+                            <input type="range" class="form-control"  name="fypos" min="0" step='0.1'  max="3.5" value="2" id="fypos" data-ng-model="fypos" />
+                            <span class="input-group-addon slbl" data-ng-bind="fypos"></span>
+                        </div>
+                    </div>
                     <div class="form-group fSize">
                         <div class="input-group">
-                            <span class="input-group-addon">Text size</span>
-                            <input type="range" class="form-control"  name="fSize" min="10" step='1'  max="18" value="0.1" id="fSize" />
+                            <span class="input-group-addon lbl">Font size</span>
+                            <input type="range" class="form-control"  name="fSize" min="8" step='1'  max="18" value="12" id="fSize" data-ng-model="fSize" />
+                            <span class="input-group-addon slbl" data-ng-bind="fSize"></span>
+                        </div>
+                    </div>
+                    <div class="form-group fweight">
+                        <div class="input-group">
+                            <span class="input-group-addon lbl">Font weight</span>
+                            <input type="range" class="form-control"  name="fweight" min="100" step='100'  max="900" value="400" id="fweight" data-ng-model="fweight" />
+                            <span class="input-group-addon slbl" data-ng-bind="fweight"></span>
                         </div>
                     </div>
                     <div class="form-group fColor">
                         <div class="input-group">
-                            <span class="input-group-addon">Logo color</span>
-                            <input type="text" class="form-control"  name="fColor" id="fColor" />
+                            <span class="input-group-addon">&nbsp;Font color&nbsp;</span>
+                            <input id="html5colorpicker" value="#ffffff"  class="form-control" type="color" data-ng-model="fcolor" />
+
                         </div>
                     </div>
                     <div class="form-group fType">
                         <div class="input-group">
-                            <span class="input-group-addon">Logo size</span>
-                            <select class="form-control"  name="fType" id="fType">
-                                <option value="Helvetica Neue" default>Default</option>
-                                <option value="Helvetica">Helvetica</option>
-                                <option value="sans-serif">Sans-serif</option>
-                                <option value="Arial">Arial</option>
-                                <option value="cursive">Cursive</option>
+                            <span class="input-group-addon">&nbsp;Font type&nbsp;&nbsp;</span>
+                            <select class="form-control"  name="fType" id="fType" data-ng-model="fType">
+                                <option class="form-control" value="Helvetica Neue">Default</option>
+                                <option class="form-control" value="Helvetica">Helvetica</option>
+                                <option class="form-control" value="sans-serif">Sans-serif</option>
+                                <option class="form-control" value="Arial">Arial</option>
+                                <option class="form-control" value="cursive">Cursive</option>
                             </select>
                         </div>
                     </div>
@@ -149,7 +183,7 @@
             <!-- Right container to host the visual of the card -->
             <div class="col-md-6 text-left main-right ">
                 <div class="card-wrapper">
-                    <div class="form-group theme-wrapper">
+                    <!--<div class="form-group theme-wrapper">
                         <div class="input-group">
                             <span class="input-group-addon">Theme: </span>
                             <select class="form-control" id="theme" name="theme" data-ng-model="theme">
@@ -158,18 +192,21 @@
                                 <option value="theme3">Theme 3</option>
                             </select>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="card-preview {{theme}}">
-                    <section class="logo col-md-6">
-                            <div class="companyLogo"></div>
+                        <section class="logo col-md-12">
+                            <div class="companyLogo" my-draggable></div>
                     </section>
-                    <section class="personal-details col-md-6 ">
+                        <section class="personal-details col-md-12 ">
+                            <div class="moveTextWrapper" my-draggable style="position:absolute;top:{{fypos}}cm;left:{{fxpos}}cm;color:{{fcolor}};font-size:{{fSize}}px;font-weight:{{fweight}};font-family:'{{fType}}';">
                             <span data-ng-show="cardDetails.name" data-ng-bind="name" class="pdata name"></span>
+                                <span data-ng-show="cardDetails.occupation" data-ng-bind="occupation" class="pdata occupation"></span>
                             <span data-ng-show="cardDetails.email" data-ng-bind="email" class="pdata email"></span>
                             <span data-ng-show="cardDetails.www" data-ng-bind="www" class="pdata www"></span>
                             <span data-ng-show="cardDetails.tel || cardDetails.mob" class="pdata tel mob">{{tel}}<span class="comma">,</span> {{mob}}</span>
                             <span data-ng-show="cardDetails.address1" data-ng-bind="address1" class="pdata address1"></span>
                             <span data-ng-show="cardDetails.city || cardDetails.pc" class="city pc pdata ">{{city | uppercase}}<span class="comma">,</span> {{pc | uppercase}}</span>
+                            </div>
                     </section>
                 </div>
             </div>

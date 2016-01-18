@@ -31,12 +31,12 @@ app.controller('cardMaster' , function($scope){
         jQuery('#logoSize').val('30').trigger('change');
         var file = event.target.files[0];
         var imageType = /(image\/jpeg|image\/jpg|image\/png|image\/svg|image\/gif)/;
-        console.log(file.type);
-        console.log(event.target.id);
+        console.log('File type: '+file.type+'\nFile size is: '+file.size+'\nFile name is: '+file.name+'\n');
         var elem = event.target.id;
         if (file.type.match(imageType)) {
             var reader = new FileReader();
             reader.onload = function(event) {
+                var contents = event.target.result; //most useful for text files
                 if(elem=='bimage'){
                     jQuery('.card-preview').css({'background':'url("'+reader.result+'") no-repeat center center','background-size':'cover'});
                 }else{
@@ -81,16 +81,21 @@ app.controller('cardMaster' , function($scope){
         jQuery('.companyLogo').css({'width':jQuery(e.target).val()+'px','height':jQuery(e.target).val()+'px'})
     });
     /*####################################################*/
-    //change text style
-    jQuery('#fSize').off('change').on('change',function(e){
-        jQuery('.personal-details').css('font-size',jQuery(e.target).val()+'px')
+    //fix elem height of two main boxes
+    jQuery('.main-left').outerHeight()>jQuery('.main-center').outerHeight()?jQuery('.main-center').outerHeight(jQuery('.main-left').outerHeight()):jQuery('.main-left').outerHeight(jQuery('.main-center').outerHeight());
+    /*####################################################*/
+    //fix width of input labels
+    var lblWidths = [];
+    jQuery('.input-group-addon.lbl').each(function(ind,elem){
+        lblWidths.push(jQuery(elem).width());
     });
-    jQuery('#fColor').off('change').on('change',function(e){
-        jQuery('.personal-details').css('color',jQuery(e.target).val())
-    });
-    jQuery('#fType').off('change').on('change',function(e){
-        jQuery('.personal-details').css({'font-family':'"'+jQuery(e.target).val()+'"'})
-    });
+    lblWidths.sort(function(a, b){return b-a});
+    jQuery('.input-group-addon.lbl').width(lblWidths[0]);
+    /*####################################################*/
+    //fix width of input suffix labels
+
+
+
 
 });
 app.directive('cardPreview' , function(){
@@ -99,6 +104,43 @@ app.directive('cardPreview' , function(){
         template: ''
     }
 });
+app.directive('myDraggable', ['$document', function($document) {
+    return {
+        link: function (scope, element, attr) {
+            var startX = 0, startY = 0, x = 0, y = 0;
+
+            /*element.css({
+                position: 'relative',
+                border: '1px solid red',
+                backgroundColor: 'lightgrey',
+                cursor: 'pointer'
+            });*/
+
+            element.on('mousedown', function (event) {
+                // Prevent default dragging of selected content
+                event.preventDefault();
+                startX = event.pageX - x;
+                startY = event.pageY - y;
+                $document.on('mousemove', mousemove);
+                $document.on('mouseup', mouseup);
+            });
+
+            function mousemove(event) {
+                y = event.pageY - startY;
+                x = event.pageX - startX;
+                element.css({
+                    top: y + 'px',
+                    left: x + 'px'
+                });
+            }
+
+            function mouseup() {
+                $document.off('mousemove', mousemove);
+                $document.off('mouseup', mouseup);
+            }
+        }
+    };
+}]);
 /*####################################################*/
 /*################# END ng-app #######################*/
 /*####################################################*/

@@ -11,7 +11,9 @@ body{
      h1{
           color:#000;
           text-align:center;
-
+     }
+     h2{
+          font-size: 20px;
      }
      .bordered{
           border:1px solid #aaa;
@@ -22,9 +24,6 @@ body{
      }
      .main-left,.main-right{
           padding: 1em;
-          h2{
-               font-size: 20px;
-          }
      }
      .main-left{
 
@@ -60,6 +59,7 @@ body{
                }
           }
           section.personal-details{
+                         position:relative;
                font-size:10px;
                span.pdata{
                     padding:1px 0;
