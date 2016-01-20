@@ -4,10 +4,28 @@
 // - Mixins
 @import "mixins";
 @import "print";
-
+@mixin linearGradient($start , $end){
+     background: #{$start}; /* Old browsers */
+     background: -moz-linear-gradient(top,  #{$start} 0%, #{$end} 66%); /* FF3.6+ */
+     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#{$start}), color-stop(66%,#{$end})); /* Chrome,Safari4+ */
+     background: -webkit-linear-gradient(top,  #{$start} 0%,#{$end} 66%); /* Chrome10+,Safari5.1+ */
+     background: -o-linear-gradient(top,  #{$start} 0%,#{$end} 66%); /* Opera 11.10+ */
+     background: -ms-linear-gradient(top,  #{$start} 0%,#{$end} 66%); /* IE10+ */
+     background: linear-gradient(to bottom,  #{$start} 0%,#{$end} 66%);
+     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$start}', endColorstr='#{$end}',GradientType=0 );
+}
+@mixin transition($what , $duration , $easing){
+     transition: #{$what} #{$duration} #{$easing};
+     -moz-transition: #{$what} #{$duration} #{$easing};
+     -webkit-transition: #{$what} #{$duration} #{$easing};
+     -o-transition: #{$what} #{$duration} #{$easing};
+}
 body{
      //background:#f00;
      //color:#fff;
+     &.hideMe {
+          visibility: hidden;
+     }
      h1{
           color:#000;
           text-align:center;
@@ -38,15 +56,38 @@ body{
                width: 8.5cm;
                margin: 0 auto 20px auto;
      }
-     .card-preview,.card-preview.default{
+               .card-preview{
           border:1px solid #aaa;
           border-radius:4px;
           margin:0 auto;
           position:relative;
+                    @include transition(all , 0.75s , linear);
+                    &.default{
+                         border: 1px solid #aaa;
+                         border-radius: 4px;
+                         margin: 0 auto;
+                         position: relative;
+                    }
+                    &.sizeUK{
+                         width:321.25px; //8.5cm
+                         height:207.87px; //5.5cm
+                    }
+                    &.sizeBG{
+                         width:340.15px; //9cm
+                         height:188.97px; //5cm
+                    }
+                    &.sizeHK{
+                         width:340.15px; //9cm
+                         height:204.09px; //5.4cm
+                    }
+                    &.sizeUS{
+                         width:336px; //8.89cm
+                         height:192px; //5.08cm
+                    }
           section{
 
-          }
-          section.logo{
+
+                    &.logo {
                          position: relative;
                          .companyLogo {
                               position: absolute;
@@ -56,7 +97,7 @@ body{
                     height:50px;
                }
           }
-          section.personal-details{
+                    &.personal-details {
                          position:relative;
                font-size:10px;
                span.pdata{
@@ -87,22 +128,9 @@ body{
                }
           }
      }
-     .sizeUK{
-          width:8.5cm;
-          height:5.5cm;
+
      }
-     .sizeBG{
-          width:9cm;
-          height:5cm;
-     }
-     .sizeHK{
-          width:9cm;
-          height:5.4cm;
-     }
-     .sizeUS{
-          width:8.89cm;
-          height:5.08cm;
-     }
+
      //#################### themes ###################
      //#################### second theme ###################
      .card-preview.theme2{

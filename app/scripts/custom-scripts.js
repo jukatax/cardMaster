@@ -7,7 +7,8 @@
 /*####################################################*/
 var app = angular.module('cardMaster', []);
 app.controller('cardMaster' , function($scope){
-
+    $scope.textLeft=6;
+    $scope.textTop=10;
     //show hide comma if both values are present for city and postcode
     jQuery('#pc,#city').on('blur',function(){
         if(jQuery('#city').val().trim()!='' && jQuery('#pc').val().trim()!=''){
@@ -70,13 +71,7 @@ app.controller('cardMaster' , function($scope){
         });
     }));
     /*####################################################*/
-    //change x position of Logo
-   /* jQuery('#xPos').off('change').on('change',function(e){
-        jQuery('.companyLogo').css('left',jQuery(e.target).val()+'cm')
-    });
-    jQuery('#yPos').off('change').on('change',function(e){
-        jQuery('.companyLogo').css('top',jQuery(e.target).val()+'cm')
-    });*/
+
     jQuery('#logoSize').off('change').on('change',function(e){
         jQuery('.companyLogo').css({'width':jQuery(e.target).val()+'px','height':jQuery(e.target).val()+'px'})
     });
@@ -101,20 +96,17 @@ app.controller('cardMaster' , function($scope){
 app.directive('cardPreview' , function(){
     return {
         restrict: 'EAC',
+        controller : 'cardMaster',
         template: ''
     }
 });
 app.directive('myDraggable', ['$document', function($document) {
     return {
-        link: function (scope, element, attr) {
-            var startX = element.offsetLeft, startY = element.offsetTop, x = 0, y = 0;
+        restrict : "A",
+        controller : 'cardMaster',
+        link: function (scope, element, attr, ctrl) {
+            var startX = 0, startY = 0, x = 0, y = 0;
 
-            /*element.css({
-                position: 'relative',
-                border: '1px solid red',
-                backgroundColor: 'lightgrey',
-                cursor: 'pointer'
-            });*/
 
             element.on('mousedown', function (event) {
                 // Prevent default dragging of selected content
@@ -128,10 +120,22 @@ app.directive('myDraggable', ['$document', function($document) {
             function mousemove(event) {
                 y = event.pageY - startY;
                 x = event.pageX - startX;
+                if(element.attr('class').match(/moveTextWrapper/i)) {
+                    scope.$apply(function () {
+                        scope.textLeft = x;
+                        scope.textTop = y;
+                    });
+                }else{
                 element.css({
                     top: y + 'px',
                     left: x + 'px'
                 });
+            }
+
+               /*element.css({
+                    top: y + 'px',
+                    left: x + 'px'
+                });*/
             }
 
             function mouseup() {
@@ -144,3 +148,6 @@ app.directive('myDraggable', ['$document', function($document) {
 /*####################################################*/
 /*################# END ng-app #######################*/
 /*####################################################*/
+jQuery('document').ready(function(){
+    jQuery('body').removeClass('hideMe');
+});
