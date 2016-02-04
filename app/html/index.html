@@ -21,7 +21,7 @@
 </head>
 <body class="hideMe" data-ng-app="cardMaster" data-ng-controller='cardMaster' data-ng-init="name='John Doe';occupation='Front-end Web Developer';email='myemail@domain.com';tel='0203434567';mob='07401236993';address1='14a Claybury Broadway';city='Ilford';pc='IG5 0LQ';theme='default';size='sizeUK';xPos='1';yPos='1';logoSize='40';fSize=10;fxpos=10;fypos=50;fcolor='#000000';fweight=400;fType='Helvetica Neue';">
     <h1 data-html="Online Business Card maker"></h1>
-    <div class="container-fluid">
+    <div class="container-fluid" data-ng-hide="hideSettings">
         <div class="row">
             <!-- Left container to host the text options of card-->
             <div class="col-md-3 text-left main-left bg-primary">
@@ -188,13 +188,13 @@
                         </section>
                         <section class="personal-details col-md-6 ">
                             <div class="moveTextWrapper" data-my-draggable style="position:absolute;top:{{fypos+textTop}}px;left:{{fxpos+textLeft}}px;color:{{fcolor}};font-size:{{fSize}}px;font-weight:{{fweight}};font-family:'{{fType}}';">
-                                <span data-ng-show="cardDetails.name" data-ng-bind="name" class="pdata name"></span>
-                                <span data-ng-show="cardDetails.occupation" data-ng-bind="occupation" class="pdata occupation"></span>
-                                <span data-ng-show="cardDetails.email" data-ng-bind="email" class="pdata email"></span>
-                                <span data-ng-show="cardDetails.www" data-ng-bind="www" class="pdata www"></span>
-                                <span data-ng-show="cardDetails.tel || cardDetails.mob" class="pdata tel mob">{{tel}}<span class="comma">,</span> {{mob}}</span>
+                                <span data-ng-show="name.length" data-ng-bind="name" class="pdata name"></span>
+                                <span data-ng-show="occupation.length" data-ng-bind="occupation" class="pdata occupation"></span>
+                                <span data-ng-show="email.length" data-ng-bind="email" class="pdata email"></span>
+                                <span data-ng-show="www.length" data-ng-bind="www" class="pdata www"></span>
+                                <span data-ng-show="tel.length || mob.length" class="pdata tel mob">{{tel}}<span class="comma" data-ng-show="mob.length">,</span> {{mob}}</span>
                                 <span data-ng-show="cardDetails.address1" data-ng-bind="address1" class="pdata address1"></span>
-                                <span data-ng-show="cardDetails.city || cardDetails.pc" class="city pc pdata ">{{city | uppercase}}<span class="comma">,</span> {{pc | uppercase}}</span>
+                                <span data-ng-show="city.length || pc.length" class="city pc pdata ">{{city | uppercase}}<span class="comma" data-ng-show="pc.lenght">,</span> {{pc | uppercase}}</span>
                             </div>
                         </section>
                 </div>
@@ -202,7 +202,12 @@
         </div>
     </div>
     </div>
+    <button class="btn btn-lg" data-ng-click="printMe()" data-ng-show="print">Preview and print</button>
+    <button class="btn btn-lg" data-ng-click="settings()" data-ng-show="back">Back</button>
     <div id="loading"></div>
+    <div id="printingContainer" class="container" data-ng-show="showPrint">
+        <div class="row"></div>
+    </div>
 <!--################## img directory img/image.jpg ######################### -->
 
 

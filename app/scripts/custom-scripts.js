@@ -9,21 +9,27 @@ var app = angular.module('cardMaster', []);
 app.controller('cardMaster' , function($scope){
     $scope.textLeft=6;
     $scope.textTop=10;
-    //show hide comma if both values are present for city and postcode
-    jQuery('#pc,#city').on('blur',function(){
-        if(jQuery('#city').val().trim()!='' && jQuery('#pc').val().trim()!=''){
-            $('.city.pc.pdata .comma').show();
-        }else{
-            $('.city.pc.pdata .comma').hide();
+    $scope.showPrint = false;
+    $scope.hideSettings = false;
+    $scope.back = false;
+    $scope.print = true;
+    $scope.printMe = function(){
+        for(var i=0;i<8;i++){
+            jQuery('.main-right .card-preview').clone().appendTo('#printingContainer .row');
+            console.log(i);
         }
-    });
-    jQuery('#tel,#mob').on('blur',function(){
-        if(jQuery('#tel').val().trim()!='' && jQuery('#mob').val().trim()!=''){
-            $('.tel.mob.pdata .comma').show();
-        }else{
-            $('.tel.mob.pdata .comma').hide();
-        }
-    });
+        $scope.showPrint = true;
+        $scope.hideSettings = true;
+        $scope.back = true;
+        $scope.print = false;
+    };
+    $scope.settings = function(){
+        $scope.showPrint = false;
+        $scope.hideSettings = false;
+        $scope.back = false;
+        $scope.print = true;
+        jQuery('#printingContainer .row').html('');
+    };
     /*####################################################*/
     //file upload to background image
     function onChange(event) {
@@ -53,7 +59,7 @@ app.controller('cardMaster' , function($scope){
     jQuery('#bimage,#cimage').off('change').on('change',function(e){ onChange(e); });
     /*####################################################*/
     //form submit to ajax php
-    $("#cardDetails").on('submit',(function(e) {
+    /*$("#cardDetails").on('submit',(function(e) {
         e.preventDefault();
         $('#loading').show();
         $.ajax({
@@ -69,7 +75,7 @@ app.controller('cardMaster' , function($scope){
                 $("#message").html(data);
             }
         });
-    }));
+    }));*/
     /*####################################################*/
 
     jQuery('#logoSize').off('change').on('change',function(e){
@@ -97,7 +103,9 @@ app.directive('cardPreview' , function(){
     return {
         restrict: 'EAC',
         controller : 'cardMaster',
-        template: ''
+        link: function(){
+
+        }
     }
 });
 app.directive('myDraggable', ['$document', function($document) {

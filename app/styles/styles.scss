@@ -3,7 +3,7 @@
 @import "variables";
 // - Mixins
 @import "mixins";
-@import "print";
+//@import "print";
 @mixin linearGradient($start , $end){
      background: #{$start}; /* Old browsers */
      background: -moz-linear-gradient(top,  #{$start} 0%, #{$end} 66%); /* FF3.6+ */
@@ -208,6 +208,203 @@ body{
      #loading{
           display:none;
           background: url("../img/AjaxLoader.gif") no-repeat center center;
+     }
+
+     #printingContainer{
+
+          width:21cm;
+          height:29.7cm;
+          margin:0 auto;
+          padding:1cm;
+          background:#fff;
+          overflow:hidden;
+          .card-preview{
+               float:left;
+               margin:1em;
+          }
+          .card-preview{
+               border:1px solid #aaa;
+               border-radius:4px;
+               float:left;
+               margin:0.5em 1em;
+               position:relative;
+               @include transition(all , 0.75s , linear);
+               &.default{
+                    border: 1px solid #aaa;
+                    border-radius: 4px;
+                    position: relative;
+               }
+               &.sizeUK{
+                    width:321.25px; //8.5cm
+                    height:207.87px; //5.5cm
+               }
+               &.sizeBG{
+                    width:340.15px; //9cm
+                    height:188.97px; //5cm
+               }
+               &.sizeHK{
+                    width:340.15px; //9cm
+                    height:204.09px; //5.4cm
+               }
+               &.sizeUS{
+                    width:336px; //8.89cm
+                    height:192px; //5.08cm
+               }
+               section{
+
+
+                    &.logo {
+                         position: relative;
+                         .companyLogo {
+                              position: absolute;
+                              top: 10px;
+                              left: 10px;
+                              width:50px;
+                              height:50px;
+                         }
+                    }
+                    &.personal-details {
+                         position:relative;
+                         font-size:10px;
+                         span.pdata{
+                              padding:1px 0;
+                              margin:0;
+                              display:block;
+                         }
+                         .name{
+                              font-size: 20px;
+                         }
+                         .email{
+
+                         }
+                         .www {
+
+                         }
+                         .tel{
+
+                         }
+                         .mob{
+
+                         }
+                         .address1{
+
+                         }
+                         .address2{
+
+                         }
+                    }
+               }
+
+          }
+     }
+
+}
+
+//#################################//
+//#################################//
+//#################################//
+//#################################//
+
+@media print{
+     html{
+          body{
+               .main-left{
+                    display:none;
+               }
+               .main-center{
+                    display:none;
+               }
+               .main-right {
+                    display:none;
+               }
+               #printingContainer{
+
+                    width:21cm;
+                    height:29.7cm;
+                    margin:0 auto;
+                    padding:1cm;
+                    background:#fff;
+                    overflow:hidden;
+                    .card-preview{
+                         float:left;
+                         margin:1em;
+                    }
+                    .card-preview{
+                         border:1px solid #aaa;
+                         border-radius:4px;
+                         float:left;
+                         margin:0.5em 1em;
+                         position:relative;
+                         @include transition(all , 0.75s , linear);
+                         &.default{
+                              border: 1px solid #aaa;
+                              border-radius: 4px;
+                              position: relative;
+                         }
+                         &.sizeUK{
+                              width:321.25px; //8.5cm
+                              height:207.87px; //5.5cm
+                         }
+                         &.sizeBG{
+                              width:340.15px; //9cm
+                              height:188.97px; //5cm
+                         }
+                         &.sizeHK{
+                              width:340.15px; //9cm
+                              height:204.09px; //5.4cm
+                         }
+                         &.sizeUS{
+                              width:336px; //8.89cm
+                              height:192px; //5.08cm
+                         }
+                         section{
+
+
+                              &.logo {
+                                   position: relative;
+                                   .companyLogo {
+                                        position: absolute;
+                                        top: 10px;
+                                        left: 10px;
+                                        width:50px;
+                                        height:50px;
+                                   }
+                              }
+                              &.personal-details {
+                                   position:relative;
+                                   font-size:10px;
+                                   span.pdata{
+                                        padding:1px 0;
+                                        margin:0;
+                                        display:block;
+                                   }
+                                   .name{
+                                        font-size: 20px;
+                                   }
+                                   .email{
+
+                                   }
+                                   .www {
+
+                                   }
+                                   .tel{
+
+                                   }
+                                   .mob{
+
+                                   }
+                                   .address1{
+
+                                   }
+                                   .address2{
+
+                                   }
+                              }
+                         }
+
+                    }
+               }
+          }
      }
 
 }
