@@ -308,13 +308,7 @@ body{
 @media print{
      html{
           body{
-               .main-left{
-                    display:none;
-               }
-               .main-center{
-                    display:none;
-               }
-               .main-right {
+               .main-left,.main-center,.main-right.print,.back {
                     display:none;
                }
                #printingContainer{

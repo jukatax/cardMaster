@@ -13,13 +13,10 @@
     <link rel="stylesheet" type="text/css" href="styles/vendor/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
 
-    <script src="scripts/vendor/jquery-1.12.0.min.js"></script>
-    <script src="scripts/vendor/angular.min.js"></script>
-    <script src="scripts/vendor/angular-resource.min.js"></script>
-    <script src="scripts/vendor/angular-route.min.js"></script>
+
     <title>CardMaster app</title>
 </head>
-<body class="hideMe" data-ng-app="cardMaster" data-ng-controller='cardMaster' data-ng-init="name='John Doe';occupation='Front-end Web Developer';email='myemail@domain.com';tel='0203434567';mob='07401236993';address1='14a Claybury Broadway';city='Ilford';pc='IG5 0LQ';theme='default';size='sizeUK';xPos='1';yPos='1';logoSize='40';fSize=10;fxpos=10;fypos=50;fcolor='#000000';fweight=400;fType='Helvetica Neue';">
+<body class="hideMe" data-ng-app="cardMaster" data-ng-controller='cardMaster' data-ng-init="name='John Doe';occupation='Front-end Web Developer';email='myemail@domain.com';tel='02001234567';mob='07401234567';address1='some street';city='some town';pc='some postcode';theme='default';size='sizeUK';xPos='1';yPos='1';logoSize='40';fSize=10;fxpos=10;fypos=50;fcolor='#000000';fweight=400;fType='Helvetica Neue';">
     <h1 data-html="Online Business Card maker"></h1>
     <div class="container-fluid" data-ng-hide="hideSettings">
         <div class="row">
@@ -202,8 +199,8 @@
         </div>
     </div>
     </div>
-    <button class="btn btn-lg" data-ng-click="printMe()" data-ng-show="print">Preview and print</button>
-    <button class="btn btn-lg" data-ng-click="settings()" data-ng-show="back">Back</button>
+    <button class="btn btn-lg print" data-ng-click="printMe()" data-ng-show="print">Preview and print</button>
+    <button class="btn btn-lg back" data-ng-click="settings()" data-ng-show="back">Back</button>
     <div id="loading"></div>
     <div id="printingContainer" class="container" data-ng-show="showPrint">
         <div class="row"></div>
@@ -217,6 +214,10 @@
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
 <!-- Latest compiled and minified JavaScript -->
 <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>-->
+    <script src="scripts/vendor/jquery-1.12.0.min.js"></script>
+    <script src="scripts/vendor/angular.min.js"></script>
+    <script src="scripts/vendor/angular-resource.min.js"></script>
+    <script src="scripts/vendor/angular-route.min.js"></script>
     <script src="scripts/vendor/bootstrap.min.js"></script>
     <script src="scripts/custom-scripts.js"></script>
 </body>
