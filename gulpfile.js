@@ -74,7 +74,8 @@ gulp.task('styles', function () {
     // For best performance, don't add Sass partials to `gulp.src`
     return gulp.src([
         'app/styles/*.scss',
-        'app/styles/**/*.css'
+        'app/styles/**/*.css',
+        '!app/styles/vedor/**/*.css'
     ])
         .pipe($.size({title: 'Styles before compression'}))
         .pipe($.changed('styles', {extension: '.scss'}))
@@ -96,7 +97,7 @@ gulp.task('styles', function () {
 gulp.task('html', function () {
     var assets = $.useref.assets({searchPath: '{.tmp,app}'});
 
-    return gulp.src('app/html/**/*.html')
+    return gulp.src(['app/html/**/*.html','app/html/**/*.php'])
         // version CSS based on date
         .pipe($.size({title: 'html before compression'}))
         .pipe(reveasy({
@@ -111,10 +112,21 @@ gulp.task('html', function () {
         .pipe(assets.restore())
         .pipe($.useref())
         // Minify Any HTML
-        .pipe($.if('*.html', htmlmin({collapseWhitespace: true})))
+        //.pipe($.if('*.html', htmlmin({collapseWhitespace: true})))
         // Output Files
-        .pipe(gulp.dest('app/public'))
-        .pipe($.size({title: 'html after compression'}));
+        .pipe(gulp.dest('app/public'));
+        //.pipe($.size({title: 'html after compression'}));
+        
+});
+gulp.task('htmlToPhp',function(){
+    return gulp.src("app/public/index.html")
+        .pipe(rename(function (path) {
+            //path.dirname += "/ciao";
+            //path.basename += "-goodbye";
+            path.extname = ".php"
+        }))
+        //.pipe( del.bind(null,["app/public/index.html"]) )
+        .pipe(gulp.dest("app/public"));
 });
 
 // Clean Output Directory
@@ -157,7 +169,20 @@ gulp.task('serve:public', ['default'], function () {
     gulp.watch(['app/img/**/*'], reload);
 });
 
+gulp.task('copyCM2', function () {
+    return gulp.src([
+        "app/public/**/*",
+        '!app/public/**/.DS_Store/',
+        '!app/public/**/.git/',
+        '!app/public/**/.gitignore/',
+        '!app/public/**/.project/',
+        '!app/public/**/.idea/'
+    ]).pipe(gulp.dest('../ydy/yy/businessCard'));
+});
+
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (callback) {
-    runSequence('styles', ['html', 'img', 'fonts', 'copy', 'js'], callback);
+    runSequence('styles', 'html', 'htmlToPhp', 'img', 'fonts', 'copy', 'js', 'copyCM2' , callback);
+    //gulp.run('copyCM2');
+    
 });

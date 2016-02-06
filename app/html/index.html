@@ -5,19 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="author" content="Yuliyan Yordanov" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Professional Web Optimisation services. Qualified Web Developer and Analyst.UX , Conversion Rate Optimisation and Analytics " />
-    <meta name="keywords" content="javascipt,jQuery,web optimisation,web development,cro " />
+    <meta name="description" content="Print your own personalised business cards for free" />
+    <meta name="keywords" content="free business card,free personalised business cards" />
+    <!-- fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
     <!-- Latest compiled and minified CSS -->
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">-->
-    <link rel="stylesheet" type="text/css" href="styles/vendor/font-awesome.min.css">
+    <!--<link rel="stylesheet" type="text/css" href="styles/vendor/font-awesome.min.css">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="styles/vendor/bootstrap.min.css">
+    <!--<link rel="stylesheet" type="text/css" href="../css/new_style.css" />-->
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
 
 
-    <title>CardMaster app</title>
+    <title>Free Online Business Card maker</title>
 </head>
-<body class="hideMe" data-ng-app="cardMaster" data-ng-controller='cardMaster' data-ng-init="name='John Doe';occupation='Front-end Web Developer';email='myemail@domain.com';tel='02001234567';mob='07401234567';address1='some street';city='some town';pc='some postcode';theme='default';size='sizeUK';xPos='1';yPos='1';logoSize='40';fSize=10;fxpos=10;fypos=50;fcolor='#000000';fweight=400;fType='Helvetica Neue';">
-    <h1 data-html="Online Business Card maker"></h1>
+<body class="hideMe cardMaster" data-ng-app="cardMaster" data-ng-controller='cardMaster' data-ng-init="name='John Doe';occupation='Front-end Web Developer';email='myemail@domain.com';tel='02001234567';mob='07401234567';address1='some street';city='some town';pc='postcode';theme='';size='sizeUK';xPos='1';yPos='1';logoSize=80;bradius=0;fSize=10;fxpos=10;fypos=50;fcolor='#000000';fweight=400;fType='Helvetica Neue';">
+<nav class="navbar navbar-default">
+    <a id="link_about" href="../index.php#about" onClick="ga('send', 'event', 'Links', 'ClickProfile', 'Profile');">About</a>
+    <a id='link_services' href='../index.php#services' onClick="ga('send', 'event', 'Links', 'ClickServices', 'Services');">Services</a>
+    <a id='link_exp' href='../index.php#experience'>Experience</a>
+    <a id='link_edu' href='../index.php#education'>Education</a>
+    <a id="link_contact" href="../index.php#contact" onClick="ga('send', 'event', 'Links', 'ClickContact', 'Contact');">Contact me</a>
+    <a id="link_homeSnippets" href="../index.php#snippets">Code Snippets</a>
+    <a id="webapps" href="../webapps">Webapps</a>
+</nav>
+    <h1 data-html="Online Business Card maker">Online Business Card maker</h1>
     <div class="container-fluid" data-ng-hide="hideSettings">
         <div class="row">
             <!-- Left container to host the text options of card-->
@@ -27,66 +40,66 @@
                 <form name="cardDetails" id="cardDetails">
                     <div class="form-group">
                         <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
                         <input type="text" class="form-control" name="name" id="name" placeholder="Your full name here" data-ng-model="name" />
                     </div>
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+                            <span class="input-group-addon"><i class="fa fa-wrench"></i></span>
                             <input type="text" class="form-control" name="occupation" id="occupation" placeholder="Your occupation" data-ng-model="occupation" />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-                            <span class="input-group-addon">@</span>
+                            <span class="input-group-addon"><i class="fa fa-at "></i></span>
                         <input type="email" class="form-control" name="email" id="email" placeholder="Email" data-ng-model="email" />
                     </div>
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></span>
+                            <span class="input-group-addon"><i class="fa fa-globe "></i></span>
                             <input type="text" class="form-control" name="www" id="www" placeholder="Your website" data-ng-model="www" />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></span>
+                            <span class="input-group-addon"><i class="fa fa-phone "></i></span>
                             <input type="tel" class="form-control" name="tel" id="tel" placeholder="Landline number" data-ng-model="tel" />
                     </div>
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></span>
+                            <span class="input-group-addon"><i class="fa fa-mobile "></i></span>
                             <input type="tel" class="form-control" name="mob" id="mob" placeholder="Mobile number" data-ng-model="mob" />
                     </div>
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-road" aria-hidden="true"></span></span>
+                            <span class="input-group-addon"><i class="fa fa-home"></i></span>
                         <input type="text" class="form-control" id="address1" name="address1" placeholder="Address line 1" data-ng-model="address1" />
                     </div>
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></span>
+                            <span class="input-group-addon"><i class="fa fa-building "></i></span>
                         <input type="text" class="form-control" id="city" name="city" placeholder="City" data-ng-model="city" />
                     </div>
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-inbox" aria-hidden="true"></span></span>
+                            <span class="input-group-addon"><i class="fa fa-inbox "></i></span>
                         <input type="text" class="form-control" id="pc" name="pc" placeholder="Postcode" data-ng-model="pc" />
                     </div>
                     </div>
                     <div class="form-group">
-                        <label for="bimage">Background image</label>
-                        <input type="file" id="bimage" name="bimage">
+                        <label for="bimage">Background image</label> <i class="fa fa-times text-danger" data-ng-click="clearVal('bimage')"></i>
+                        <input type="file" id="bimage" name="bimage" data-ng-model="backgroundImage">
                         <p class="imageError bg-danger" style="display:none;">Only image files are supported - jpg, jpeg, png, gif.</p>
                     </div>
                     <div class="form-group">
-                        <label for="cimage">Company logo</label>
-                        <input type="file" id="cimage" name="cimage">
+                        <label for="cimage">Company logo</label> <i class="fa fa-times text-danger" data-ng-click="clearVal('cimage')" ></i>
+                        <input type="file" id="cimage" name="cimage"  data-ng-model="logoImage">
                         <p class="imageError bg-danger" style="display:none;">Only image files are supported - jpg, jpeg, png, gif.</p>
                     </div>
                     <div class="checkbox hidden">
@@ -106,9 +119,9 @@
                         <div class="input-group">
                             <span class="input-group-addon lbl">Theme: </span>
                             <select class="form-control" id="theme" name="theme" data-ng-model="theme">
-                                <option value="default" default>Default</option>
+                                <option value="" default>Default</option>
                                 <option value="theme2">Theme 2</option>
-                                <option value="theme3">Theme 3</option>
+                                <!--<option value="theme3">Theme 3</option>-->
                             </select>
                         </div>
                     </div>
@@ -130,8 +143,13 @@
                     <div class="form-group logoSize">
                         <div class="input-group">
                             <span class="input-group-addon lbl">Logo size</span>
-                            <input type="range" class="form-control"  name="logoSize" min="20" step='1' max="100" value="40" id="logoSize" data-ng-model="logoSize" />
-                            <span class="input-group-addon slbl">{{logoSize}}x{{logoSize}}px</span>
+                            <input type="range" class="form-control"  name="logoSize" min="20" step='5' max="200" value="{{logoSize}}" id="logoSize" data-ng-model="logoSize" />
+                            <span class="input-group-addon slbl">{{logoSize}}</span>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon lbl">Logo corners</span>
+                            <input type="range" class="form-control"  name="bradius" min="0" step='1' max="{{logoSize/2}}" value="0" id="bradius" data-ng-model="bradius" />
+                            <span class="input-group-addon slbl">{{bradius}}</span>
                         </div>
                     </div>
                 </form>
@@ -170,6 +188,8 @@
                                 <option class="form-control" value="sans-serif">Sans-serif</option>
                                 <option class="form-control" value="Arial">Arial</option>
                                 <option class="form-control" value="cursive">Cursive</option>
+                                <option class="form-control" value="Oswald">Oswald</option>
+                                <option class="form-control" value="Verdana">Verdana</option>
                             </select>
                         </div>
                     </div>
@@ -180,33 +200,96 @@
                 <div class="card-wrapper">
 
                     <div class="card-preview {{theme}} {{size}}">
-                        <section class="logo col-md-6">
-                            <div class="companyLogo" data-my-draggable style="position:absolute;top:{{xPos}}px;left:{{yPos}}px;"></div>
+                        <section class="logo ">
+                            <div class="companyLogo" data-my-draggable style="position:absolute!important;top:{{xPos}}px!important;left:{{yPos}}px!important;width:{{logoSize}}px;height:{{logoSize}}px;background:url('{{logo}}') no-repeat center center;background-size:cover;border-radius:{{bradius}}px"><i class="fa fa-arrows fa-2x dragOverlay"></i></div>
                         </section>
-                        <section class="personal-details col-md-6 ">
-                            <div class="moveTextWrapper" data-my-draggable style="position:absolute;top:{{fypos+textTop}}px;left:{{fxpos+textLeft}}px;color:{{fcolor}};font-size:{{fSize}}px;font-weight:{{fweight}};font-family:'{{fType}}';">
-                                <span data-ng-show="name.length" data-ng-bind="name" class="pdata name"></span>
-                                <span data-ng-show="occupation.length" data-ng-bind="occupation" class="pdata occupation"></span>
-                                <span data-ng-show="email.length" data-ng-bind="email" class="pdata email"></span>
-                                <span data-ng-show="www.length" data-ng-bind="www" class="pdata www"></span>
-                                <span data-ng-show="tel.length || mob.length" class="pdata tel mob">{{tel}}<span class="comma" data-ng-show="mob.length">,</span> {{mob}}</span>
-                                <span data-ng-show="cardDetails.address1" data-ng-bind="address1" class="pdata address1"></span>
-                                <span data-ng-show="city.length || pc.length" class="city pc pdata ">{{city | uppercase}}<span class="comma" data-ng-show="pc.lenght">,</span> {{pc | uppercase}}</span>
+                        <section class="personal-details ">
+                            <div class="moveTextWrapper" data-my-draggable style="position:absolute!important;top:{{fypos+textTop}}px!important;left:{{fxpos+textLeft}}px!important;color:{{fcolor}}!important;font-size:{{fSize}}px!important;font-weight:{{fweight}}!important;font-family:'{{fType}}'!important;">
+                                <span class="group1details">
+                                    <span data-ng-show="name.length" data-ng-bind="name" class="pdata name"></span>
+                                    <span data-ng-show="occupation.length" data-ng-bind="occupation" class="pdata occupation"></span>
+                                    <span data-ng-show="email.length" class="pdata email"><i class="fa fa-envelope-o"></i>&nbsp;&nbsp; {{email}}</span>
+                                    <span data-ng-show="www.length" class="pdata www"><i class="fa fa-at"></i>&nbsp;&nbsp; {{www}}</span>
+                                    <span data-ng-show="tel.length" class="pdata tel "><i class="fa fa-phone" data-ng-show="tel.length"></i>&nbsp;&nbsp; {{tel}}</span>
+                                    <span data-ng-show="mob.length" class="pdata mob"><i class="fa fa-mobile fa-2" data-ng-show="mob.length"></i>&nbsp;&nbsp;&nbsp; {{mob}}</span>
+                                </span>
+                                <span class="group2details">
+                                    <span data-ng-show="cardDetails.address1" data-ng-bind="address1" class="pdata address1"></span>
+                                    <span data-ng-show="city.length" class="city pdata ">{{city}}</span>
+                                    <span data-ng-show="pc.length" class="pc pdata ">{{pc}}</span>
+                                </span>
+                                <i class="fa fa-arrows fa-2x dragOverlay"></i>
                             </div>
                         </section>
                 </div>
             </div>
+                <p>&nbsp;</p>
+            <div class="col-md-12 printBtnWrapper text-center">
+                <button class="btn btn-primary btn-lg print" data-ng-click="printMe()" data-ng-show="print">Preview and print</button>
+            </div>
         </div>
     </div>
     </div>
-    <button class="btn btn-lg print" data-ng-click="printMe()" data-ng-show="print">Preview and print</button>
-    <button class="btn btn-lg back" data-ng-click="settings()" data-ng-show="back">Back</button>
+    <div class="col-md-12 backBtnWrapper" data-ng-show="back">
+        <button class="btn btn-primary btn-lg back" data-ng-click="settings()" ><i class="fa fa-chevron-left fa-3x"></i></button>
+        <button class="btn btn-primary btn-lg back pull-right" onclick="window.print()" ><i class="fa fa-print fa-3x"></i></button>
+    </div>
     <div id="loading"></div>
     <div id="printingContainer" class="container" data-ng-show="showPrint">
         <div class="row"></div>
+        <div id="editor"></div>
     </div>
 <!--################## img directory img/image.jpg ######################### -->
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="w3cicons">
+    <i class="fa fa-css3  fa-2x" style="background:#eee;"></i>
+    <i class="fa fa-html5  fa-2x" style="background:#eee;"></i>
 
+</div>
+<?php
+$company='Yuliyan Yordanov';
+ini_set('date.timezone', 'Europe/London');
+$startyear=10;
+$thisyear=date('y');  // displays last two digits of the year not 2012 but 12
+?>
+<footer>
+    <div class="donate">
+        <?php 													// include the paypal.php(paypal button)
+        $file='../cv_includes/paypal.php';
+        if(file_exists($file) && is_readable($file)){
+            include($file);
+        }
+        ?>
+    </div>
+    <?php 													// include the header.php(styles,scripts,meta)
+		$file='../cv_includes/social.php';
+		if(file_exists($file) && is_readable($file)){
+			include($file);
+		}
+	?>
+    <p>	<span class="companyf">Copyright &copy;
+        <?php
+            if($thisyear==$startyear){
+                echo '20'.$startyear;
+            }else{
+                echo '20'."$startyear-".$thisyear;
+            }
+
+            ?>
+        <?php echo $company;?></span>
+
+    </p>
+    <p class="bottom_nav">
+        <a href="https://plus.google.com/110096199287409637822?rel=author">+1 profile</a> |
+        <a href='../sitemap.php'>Sitemap</a> |
+        <a href='../privacy.php'>Privacy Policy</a>
+    </p>
+
+</footer>
 
 <!--####################################################-->
 <!--###################### scripts #####################-->
@@ -219,6 +302,17 @@
     <script src="scripts/vendor/angular-resource.min.js"></script>
     <script src="scripts/vendor/angular-route.min.js"></script>
     <script src="scripts/vendor/bootstrap.min.js"></script>
+    <!--<script src="scripts/jspdf.min.js"></script>-->
     <script src="scripts/custom-scripts.js"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-32284812-1', 'yuliyan-yordanov.co.uk');
+        ga('require', 'displayfeatures');
+        ga('send', 'pageview');
+    </script>
 </body>
 </html>

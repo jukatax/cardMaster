@@ -3,16 +3,18 @@
 /*####################################################*/
 var app = angular.module('cardMaster', []);
 app.controller('cardMaster' , function($scope){
+    $scope.logo='';
     $scope.textLeft=6;
     $scope.textTop=10;
     $scope.showPrint = false;
     $scope.hideSettings = false;
     $scope.back = false;
     $scope.print = true;
+    $scope.backgroundImage='';
+    $scope.logoImage='';
     $scope.printMe = function(){
         for(var i=0;i<8;i++){
             jQuery('.main-right .card-preview').clone().appendTo('#printingContainer .row');
-            console.log(i);
         }
         $scope.showPrint = true;
         $scope.hideSettings = true;
@@ -26,12 +28,15 @@ app.controller('cardMaster' , function($scope){
         $scope.print = true;
         jQuery('#printingContainer .row').html('');
     };
+    $scope.clearVal = function(a){
+        jQuery('#'+a).val('');
+        a.match('cimage')?jQuery('.companyLogo').css({'background':'none'}):jQuery('.card-preview').css({'background':'none'});
+    };
     /*####################################################*/
     //file upload to background image
     function onChange(event) {
         jQuery('#xPos').val('0.1');
         jQuery('#yPos').val('0.1');
-        jQuery('#logoSize').val('30').trigger('change');
         var file = event.target.files[0];
         var imageType = /(image\/jpeg|image\/jpg|image\/png|image\/svg|image\/gif)/;
         console.log('File type: '+file.type+'\nFile size is: '+file.size+'\nFile name is: '+file.name+'\n');
@@ -42,8 +47,11 @@ app.controller('cardMaster' , function($scope){
                 var contents = event.target.result; //most useful for text files
                 if(elem=='bimage'){
                     jQuery('.card-preview').css({'background':'url("'+reader.result+'") no-repeat center center','background-size':'cover'});
+                    //$scope.backgroundImage=reader.result;
                 }else{
                     jQuery('.companyLogo').css({'background':'url("'+reader.result+'") no-repeat center center','background-size':'cover'});
+                    //$scope.logoImage=reader.result;
+                    $scope.logo = reader.result;
                 }
             };
             reader.readAsDataURL(file);
@@ -72,14 +80,10 @@ app.controller('cardMaster' , function($scope){
             }
         });
     }));*/
-    /*####################################################*/
 
-    jQuery('#logoSize').off('change').on('change',function(e){
-        jQuery('.companyLogo').css({'width':jQuery(e.target).val()+'px','height':jQuery(e.target).val()+'px'})
-    });
     /*####################################################*/
     //fix elem height of two main boxes
-    jQuery('.main-left').outerHeight()>jQuery('.main-center').outerHeight()?jQuery('.main-center').outerHeight(jQuery('.main-left').outerHeight()):jQuery('.main-left').outerHeight(jQuery('.main-center').outerHeight());
+    jQuery('.main-left').outerHeight()>jQuery('.main-center').outerHeight()?jQuery('.main-center,.main-right').outerHeight(jQuery('.main-left').outerHeight()):jQuery('.main-left,.main-right').outerHeight(jQuery('.main-center').outerHeight());
     /*####################################################*/
     //fix width of input labels
     var lblWidths = [];
@@ -91,19 +95,37 @@ app.controller('cardMaster' , function($scope){
     /*####################################################*/
     //fix width of input suffix labels
 
-
-
-
 });
-app.directive('cardPreview' , function(){
+/*app.directive('ngPrinter' , function(){
     return {
-        restrict: 'EAC',
+        restrict: 'A',
         controller : 'cardMaster',
-        link: function(){
+        link: function(scope, element, attr, ctrl){
+            /!*####################################################*!/
+            /!*################# Handle PDF #######################*!/
+            /!*####################################################*!/
+            var doc = new jsPDF();
+            var specialElementHandlers = {
+                '#editor': function (element, renderer) {
+                    return true;
+                }
+            };
+
+            $('.print').click(function () {
+                scope.printMe();
+                doc.fromHTML($('#printingContainer .row').html(), 15, 15, {
+                    'width': 170,
+                    'elementHandlers': specialElementHandlers
+                });
+                doc.save('sample-file.pdf');
+            });
+            /!*####################################################*!/
+            /!*####################################################*!/
+            /!*####################################################*!/
 
         }
     }
-});
+});*/
 app.directive('myDraggable', ['$document', function($document) {
     return {
         restrict : "A",
@@ -132,8 +154,13 @@ app.directive('myDraggable', ['$document', function($document) {
                 }else{
                 element.css({
                     top: y + 'px',
-                    left: x + 'px'
+                    left: x + 'px',
+                    'border-radius': scope.bradius
                 });
+                    scope.$apply(function () {
+                        scope.xPos = y;
+                        scope.yPos = x;
+                    });
             }
 
                /*element.css({
@@ -152,6 +179,7 @@ app.directive('myDraggable', ['$document', function($document) {
 /*####################################################*/
 /*################# END ng-app #######################*/
 /*####################################################*/
+
 jQuery('document').ready(function(){
     jQuery('body').removeClass('hideMe');
 });

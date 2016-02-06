@@ -4,6 +4,12 @@
 // - Mixins
 @import "mixins";
 //@import "print";
+//colors===================
+$blue : #0CADE8;
+$light_blue : #66CCFF;
+$nav_grey : #333333;
+$nav_light_grey : #eeeeee;
+$white : #fff;
 @mixin linearGradient($start , $end){
      background: #{$start}; /* Old browsers */
      background: -moz-linear-gradient(top,  #{$start} 0%, #{$end} 66%); /* FF3.6+ */
@@ -20,11 +26,98 @@
      -webkit-transition: #{$what} #{$duration} #{$easing};
      -o-transition: #{$what} #{$duration} #{$easing};
 }
+@mixin clearFix($elem){
+     #{$elem}::after{
+          content: "";
+          display: table;
+          clear: both;
+     }
+}
 body{
-     //background:#f00;
+     background: url("../../imgs/backgrnd_3.jpg") no-repeat center center #fff;
+     background-attachment: fixed;
+     background-size: cover;
      //color:#fff;
+     font-family:Verdana, Helvetica, sans-serif;
+     font-size: 16px;
+     -webkit-font-smoothing: antialiased;
      &.hideMe {
           visibility: hidden;
+     }
+     nav{
+          margin-bottom:2em;
+          background: $nav_grey!important;
+          color:$nav_light_grey;
+          a{
+               font-size:1.1em;
+               display:inline-block;
+               font-family:'Oswald',Verdana, Helvetica, sans-serif;
+               text-decoration:none;
+               color:$nav_light_grey;
+               padding:.4em;
+               text-shadow:none;
+          }
+
+     }
+     .navbar{
+          a{
+               font-size:1.1em;
+               display:inline-block;
+               font-family:'Oswald',Verdana, Helvetica, sans-serif;
+               text-decoration:none;
+               color:$nav_light_grey;
+               text-shadow:none;
+               padding:0.8em .5em;
+          }
+     }
+     a {
+          &.backtotop {
+               display: none;
+               width: 96%;
+               padding: 0.5em 1em;
+               text-decoration: none;
+               color: #6CF;
+               font-weight: bold;
+               text-align: right;
+          }
+          &.snippet {
+               font-family: 'Oswald', Verdana, Helvetica, sans-serif;
+               text-decoration: none;
+               color: $nav_light_grey;
+               padding: .4em;
+               text-shadow: none;
+          }
+          &:hover {
+               text-decoration: none;
+               color: $blue;
+          }
+          &:focus {
+               outline: none;
+          }
+          &.active {
+               text-decoration: underline;
+               color: $blue;
+          }
+          &.button {
+               padding: 0.7em;
+               display: block;
+               border: 1px solid $nav_grey;
+               border-radius: 3px;
+               background: $blue;
+               color: $white;
+               text-align: center;
+               width: 200px;
+               margin: 0 auto;
+               &:hover {
+                    background: $white;
+                    color: $blue;
+               }
+          }
+     }
+
+     .bottom_nav{
+          background: $nav_grey;
+          color:$nav_light_grey;
      }
      h1{
           color:#000;
@@ -50,160 +143,222 @@ body{
 
      }
      .main-right {
-     .card-wrapper {
-          margin:0 auto;
-          .theme-wrapper{
-               width: 8.5cm;
-               margin: 0 auto 20px auto;
-     }
+          background:#fff;
+          .card-wrapper {
+               margin:0 auto;
+               .theme-wrapper{
+                    width: 8.5cm;
+                    margin: 0 auto 20px auto;
+               }
+
+
+               //#################### themes ###################
                .card-preview{
-          border:1px solid #aaa;
-          border-radius:4px;
-          margin:0 auto;
-          position:relative;
-                    @include transition(all , 0.75s , linear);
-                    &.default{
-                         border: 1px solid #aaa;
-                         border-radius: 4px;
-                         margin: 0 auto;
-                         position: relative;
-                    }
-                    &.sizeUK{
-                         width:321.25px; //8.5cm
-                         height:207.87px; //5.5cm
-                    }
-                    &.sizeBG{
-                         width:340.15px; //9cm
-                         height:188.97px; //5cm
-                    }
-                    &.sizeHK{
-                         width:340.15px; //9cm
-                         height:204.09px; //5.4cm
-                    }
-                    &.sizeUS{
-                         width:336px; //8.89cm
-                         height:192px; //5.08cm
-                    }
-          section{
-
-
-                    &.logo {
-                         position: relative;
-                         .companyLogo {
-                              position: absolute;
-                              top: 10px;
-                              left: 10px;
-                    width:50px;
-                    height:50px;
-               }
-          }
-                    &.personal-details {
+                         border:1px solid #aaa;
+                         border-radius:4px;
+                         margin:0 auto;
                          position:relative;
-               font-size:10px;
-               span.pdata{
-                    padding:1px 0;
-                    margin:0;
-                    display:block;
-               }
-               .name{
-                         font-size: 20px;
-               }
-               .email{
+                         @include transition(all , 0.75s , linear);
+                         &.default{
+                              border: 1px solid #aaa;
+                              border-radius: 4px;
+                              margin: 0 auto;
+                              position: relative;
+                         }
+                         &.sizeUK{
+                              width:384.68px; //8.5cm
+                              height:251.06px; //5.5cm
+                         }
+                         &.sizeBG{
+                              width:406.96px; //9cm
+                              height:228.78px; //5cm
+                         }
+                         &.sizeHK{
+                              width:406.96px; //9cm
+                              height:246.60px; //5.4cm
+                         }
+                         &.sizeUS{
+                              width:402.06px; //8.89cm
+                              height:232.35px; //5.08cm
+                         }
+                         .dragOverlay{
+                              display:none;
+                              position:absolute;
+                              top:40%;
+                              left:42%;
+                              color: #fff;
+                              background: rgba(0,0,0,0.3);
+                              border-radius: 5px;
+                          }
+                         section{
+                              &.logo {
+                                   position: relative;
+                                   float:left;
+                                   width:50%;
+                                   .companyLogo {
+                                        position: absolute;
+                                        top: 10px;
+                                        left: 10px;
+                                        width:50px;
+                                        height:50px;
 
-               }
-               .www {
+                                        &:hover{
+                                             .dragOverlay{
+                                                  display:block;
 
-               }
-               .tel{
+                                             }
+                                        }
+                                   }
 
-               }
-               .mob{
+                              }
+                              &.personal-details {
+                                   position:relative;
+                                   font-size:10px;
+                                   float:right;
+                                   width:50%;
+                                   .moveTextWrapper {
+                                        width:95%;
+                                        span.pdata {
+                                             padding: 1px 0;
+                                             margin: 0;
+                                             display: block;
+                                        }
+                                        &:hover{
+                                             .dragOverlay{
+                                                  display:block;
+                                             }
+                                        }
+                                        .group1details {
+                                             margin-bottom:5px;
+                                             display:block;
+                                             @include clearFix('.group1details');
+                                             .name {
+                                                  font-size: 1.1em;
+                                             }
+                                             .occupation {
+                                                  margin-bottom:5px;
+                                             }
+                                             .email {
 
-               }
-               .address1{
+                                             }
+                                             .www {
 
-               }
-               .address2{
+                                             }
+                                             .tel {
 
+                                             }
+                                             .mob {
+                                                  .fa-2{
+                                                       font-size: 1.25em;
+                                                  }
+                                             }
+                                        }
+                                        .group2details {
+                                             display:block;
+                                             @include clearFix('.group2details');
+                                             .address1 {
+
+                                             }
+                                             .city {
+
+                                             }
+                                             .pc {
+
+                                             }
+                                        }
+                                   }
+                              }
+                         }
+
+                    }
+               //#################### second theme ###################
+               .card-preview.theme2{
+                    section.logo{
+                         img{
+                              width:50px;
+                              height:50px;
+                         }
+                    }
+                    section.personal-details {
+                         width:100%;
+                         span.pdata {
+
+                         }
+                         .group1details {
+                              display:inline-block;
+                              width:49%;
+                              margin:0;
+                              .name {
+                                   font-size: 1.2em;
+                              }
+                              .occupation {
+
+                              }
+                              .email {
+
+                              }
+                              .www {
+
+                              }
+                              .tel {
+
+                              }
+                              .mob {
+
+                              }
+                         }
+                         .group2details {
+                              display:inline-block;
+                              width:49%;
+                              .address1 {
+
+                              }
+                              .city {
+
+                              }
+                              .pc {
+
+                              }
+                         }
+                    }
                }
+               //#################### third theme ###################
+               .card-preview.theme3{
+                    section.logo{
+                         img{
+                              width:50px;
+                              height:50px;
+                         }
+                    }
+                    section.personal-details {
+                         span.pdata {
+
+                         }
+                         .name {
+
+                         }
+                         .email {
+
+                         }
+                         .www {
+
+                         }
+                         .tel {
+
+                         }
+                         .mob {
+
+                         }
+                         .address1 {
+
+                         }
+                         .address2 {
+
+                         }
+                    }
+               }
+               //#################### END  themes ###################
           }
-     }
-
-     }
-
-     //#################### themes ###################
-     //#################### second theme ###################
-     .card-preview.theme2{
-          section.logo{
-               img{
-                    width:50px;
-                    height:50px;
-               }
-          }
-          section.personal-details {
-               span.pdata {
-
-               }
-               .name {
-
-               }
-               .email {
-
-               }
-               .www {
-
-               }
-               .tel {
-
-               }
-               .mob {
-
-               }
-               .address1 {
-
-               }
-               .address2 {
-
-               }
-          }
-     }
-     //#################### third theme ###################
-     .card-preview.theme3{
-          section.logo{
-               img{
-                    width:50px;
-                    height:50px;
-               }
-          }
-          section.personal-details {
-               span.pdata {
-
-               }
-               .name {
-
-               }
-               .email {
-
-               }
-               .www {
-
-               }
-               .tel {
-
-               }
-               .mob {
-
-               }
-               .address1 {
-
-               }
-               .address2 {
-
-               }
-          }
-     }
-     //#################### END  themes ###################
-     }
      }
      #loading{
           display:none;
@@ -211,192 +366,314 @@ body{
      }
 
      #printingContainer{
-
-          width:21cm;
-          height:29.7cm;
+          @include transition(all , 0.75s , linear);
+          width:941.48px;
+          height:1150px;
           margin:0 auto;
-          padding:1cm;
+          padding:0 45px;
           background:#fff;
           overflow:hidden;
           .card-preview{
                float:left;
                margin:1em;
           }
+          //#################### themes ###################
           .card-preview{
                border:1px solid #aaa;
                border-radius:4px;
-               float:left;
-               margin:0.5em 1em;
+               //margin:0 auto;
                position:relative;
                @include transition(all , 0.75s , linear);
                &.default{
                     border: 1px solid #aaa;
                     border-radius: 4px;
+                    margin: 0 auto;
                     position: relative;
                }
                &.sizeUK{
-                    width:321.25px; //8.5cm
-                    height:207.87px; //5.5cm
+                    width:384.68px; //8.5cm
+                    height:251.06px; //5.5cm
                }
                &.sizeBG{
-                    width:340.15px; //9cm
-                    height:188.97px; //5cm
+                    width:406.96px; //9cm
+                    height:228.78px; //5cm
                }
                &.sizeHK{
-                    width:340.15px; //9cm
-                    height:204.09px; //5.4cm
+                    width:406.96px; //9cm
+                    height:246.60px; //5.4cm
                }
                &.sizeUS{
-                    width:336px; //8.89cm
-                    height:192px; //5.08cm
+                    width:402.06px; //8.89cm
+                    height:232.35px; //5.08cm
+               }
+               .dragOverlay{
+                    display:none;
+                    position:absolute;
+                    top:40%;
+                    left:42%;
+                    color: #fff;
+                    background: rgba(0,0,0,0.3);
+                    border-radius: 5px;
                }
                section{
-
-
                     &.logo {
                          position: relative;
+                         float:left;
+                         width:50%;
                          .companyLogo {
                               position: absolute;
                               top: 10px;
                               left: 10px;
                               width:50px;
                               height:50px;
+
+                              &:hover{
+                                   .dragOverlay{
+                                        display:none;
+
+                                   }
+                              }
                          }
+
                     }
                     &.personal-details {
                          position:relative;
                          font-size:10px;
-                         span.pdata{
-                              padding:1px 0;
-                              margin:0;
-                              display:block;
-                         }
-                         .name{
-                              font-size: 20px;
-                         }
-                         .email{
-
-                         }
-                         .www {
-
-                         }
-                         .tel{
-
-                         }
-                         .mob{
-
-                         }
-                         .address1{
-
-                         }
-                         .address2{
-
-                         }
-                    }
-               }
-
-          }
-     }
-
-}
-
-//#################################//
-//#################################//
-//#################################//
-//#################################//
-
-@media print{
-     html{
-          body{
-               .main-left,.main-center,.main-right.print,.back {
-                    display:none;
-               }
-               #printingContainer{
-
-                    width:21cm;
-                    height:29.7cm;
-                    margin:0 auto;
-                    padding:1cm;
-                    background:#fff;
-                    overflow:hidden;
-                    .card-preview{
-                         float:left;
-                         margin:1em;
-                    }
-                    .card-preview{
-                         border:1px solid #aaa;
-                         border-radius:4px;
-                         float:left;
-                         margin:0.5em 1em;
-                         position:relative;
-                         @include transition(all , 0.75s , linear);
-                         &.default{
-                              border: 1px solid #aaa;
-                              border-radius: 4px;
-                              position: relative;
-                         }
-                         &.sizeUK{
-                              width:321.25px; //8.5cm
-                              height:207.87px; //5.5cm
-                         }
-                         &.sizeBG{
-                              width:340.15px; //9cm
-                              height:188.97px; //5cm
-                         }
-                         &.sizeHK{
-                              width:340.15px; //9cm
-                              height:204.09px; //5.4cm
-                         }
-                         &.sizeUS{
-                              width:336px; //8.89cm
-                              height:192px; //5.08cm
-                         }
-                         section{
-
-
-                              &.logo {
-                                   position: relative;
-                                   .companyLogo {
-                                        position: absolute;
-                                        top: 10px;
-                                        left: 10px;
-                                        width:50px;
-                                        height:50px;
+                         float:right;
+                         width:50%;
+                         .moveTextWrapper {
+                              width:95%;
+                              span.pdata {
+                                   padding: 1px 0;
+                                   margin: 0;
+                                   display: block;
+                              }
+                              &:hover{
+                                   .dragOverlay{
+                                        display:none;
                                    }
                               }
-                              &.personal-details {
-                                   position:relative;
-                                   font-size:10px;
-                                   span.pdata{
-                                        padding:1px 0;
-                                        margin:0;
-                                        display:block;
+                              .group1details {
+                                   margin-bottom:5px;
+                                   display:block;
+                                   @include clearFix('.group1details');
+                                   .name {
+                                        font-size: 1.1em;
                                    }
-                                   .name{
-                                        font-size: 20px;
+                                   .occupation {
+                                        margin-bottom:5px;
                                    }
-                                   .email{
+                                   .email {
 
                                    }
                                    .www {
 
                                    }
-                                   .tel{
+                                   .tel {
 
                                    }
-                                   .mob{
+                                   .mob {
+                                        .fa-2{
+                                             font-size: 1.25em;
+                                        }
+                                   }
+                              }
+                              .group2details {
+                                   display:block;
+                                   @include clearFix('.group2details');
+                                   .address1 {
 
                                    }
-                                   .address1{
+                                   .city {
 
                                    }
-                                   .address2{
+                                   .pc {
 
                                    }
                               }
                          }
+                    }
+               }
+
+          }
+          //#################### second theme ###################
+          .card-preview.theme2{
+               section.logo{
+                    img{
+                         width:50px;
+                         height:50px;
+                    }
+               }
+               section.personal-details {
+                    width:100%;
+                    span.pdata {
 
                     }
+                    .group1details {
+                         display:inline-block;
+                         width:49%;
+                         margin:0;
+                         .name {
+                              font-size: 1.2em;
+                         }
+                         .occupation {
+
+                         }
+                         .email {
+
+                         }
+                         .www {
+
+                         }
+                         .tel {
+
+                         }
+                         .mob {
+
+                         }
+                    }
+                    .group2details {
+                         display:inline-block;
+                         width:49%;
+                         .address1 {
+
+                         }
+                         .city {
+
+                         }
+                         .pc {
+
+                         }
+                    }
+               }
+          }
+     }
+//#####################################################
+//#################### footer #########################
+//#####################################################
+     footer{
+          width:100%;
+          border:none;
+          margin:0 auto;
+          max-width:1280px;
+          font-family:'Oswald',Verdana, Helvetica, sans-serif;
+          text-align:center;
+          .donate{
+               .paypal{
+                    width:200px;
+                    margin:0 auto;
+                    padding-bottom:10px;
+               }
+          }
+          .social{
+               ul{
+                    list-style: none;
+                    padding-left:0;
+                    margin: 0 0 8px;
+                    li{
+                         a{
+                              display:block;
+                              text-indent:-9999px;
+                              width:40px;
+                              height:40px;
+                         }
+                         a.fb{
+                              background: url('../../imgs/social.png') 2px -52px;
+                         }
+                         a.fb:hover{
+                              background: url('../../imgs/social.png') 2px -2px;
+                         }
+                         a.tw{
+                              background: url('../../imgs/social.png') -42px -52px;
+                         }
+                         a.tw:hover{
+                              background: url('../../imgs/social.png') -42px -2px;
+                         }
+                         a.gp{
+                              background: url('../../imgs/social.png') -82px -52px;
+                         }
+                         a.gp:hover{
+                              background: url('../../imgs/social.png') -82px -2px;
+                         }
+                         a.pi{
+                              background: url('../../imgs/social.png') -162px -52px;
+                         }
+                         a.pi:hover{
+                              background: url('../../imgs/social.png') -162px -2px;
+                         }
+                         a.li{
+                              background: url('../../imgs/social.png') -282px -52px;
+                         }
+                         a.li:hover{
+                              background: url('../../imgs/social.png') -282px -2px;
+                         }
+                    }
+                    li.share{
+                         margin:0 10px;
+                         width:40px;
+                         height:40px;
+                         display:inline-block;
+                    }
+               }
+          }
+          p{
+               a{
+                    font-size:1.1em;
+                    display:inline-block;
+                    font-family:'Oswald',Verdana, Helvetica, sans-serif;
+                    text-decoration:none;
+                    color:$nav_light_grey;
+                    padding:.4em;
+                    text-shadow:none;
+               }
+          }
+     }
+     .w3cicons{
+          text-align:center;
+          margin:5px 0 ;
+          .fa{
+               margin:2px 5px;
+               padding: 5px;
+               background:#eee;
+               border-radius:5px;
+          }
+     }
+     .companyf{
+          background:#fff;
+          background:rgba(255,255,255,0.8);
+          padding:3px;
+          border-radius:4px;
+     }
+}
+
+//#################################//
+//#################################//
+//#################################//
+@media screen and (max-width:991px){
+     body {
+          font-size: 1.2em;
+          nav {
+               text-align: center;
+               padding: .5em 0;
+          }
+          .main-center {
+               height: auto !important;
+               padding-bottom: 10px;
+          }
+          .main-right{
+               height: auto !important;
+          }
+     }
+}
+//#################################//
+
+@media print{
+     html{
+          background:#fff;
+          body{
+               background:#fff;
+               h1,nav, .main-left, .main-center, .main-right .printBtnWrapper, .backBtnWrapper, .print,footer,.w3cicons{
+                    display:none!important;
                }
           }
      }
