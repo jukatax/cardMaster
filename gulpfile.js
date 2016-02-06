@@ -35,7 +35,7 @@ var AUTOPREFIXER_BROWSERS = [
 
 // Lint JavaScript
 gulp.task('jshint', function () {
-    return gulp.src('app/scripts/**/*.js') // Matches 'app/scripts/somedir/somefile.js' and resolves 'base' to 'app/scripts/'
+    return gulp.src(['app/scripts/**/*.js','!app/scripts/vendor/**/*.js']) // Matches 'app/scripts/somedir/somefile.js' and resolves 'base' to 'app/scripts/'
         .pipe(reload({stream: true, once: true}))
         .pipe($.jshint())
         .pipe($.jshint.reporter('jshint-stylish'))
@@ -74,8 +74,8 @@ gulp.task('styles', function () {
     // For best performance, don't add Sass partials to `gulp.src`
     return gulp.src([
         'app/styles/*.scss',
-        'app/styles/**/*.css',
-        '!app/styles/vedor/**/*.css'
+        'app/styles/**/*.css'
+        
     ])
         .pipe($.size({title: 'Styles before compression'}))
         .pipe($.changed('styles', {extension: '.scss'}))
@@ -85,12 +85,12 @@ gulp.task('styles', function () {
         .on('error', console.error.bind(console))
         .pipe($.autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
         .pipe(gulp.dest('.tmp/styles'))
-        .pipe(gulp.dest('app/public/styles'))
+        .pipe(gulp.dest('app/public/styles'));
         // Concatenate And Minify Styles
-        .pipe(rename({suffix:'.min'}))
-        .pipe($.if('*.css', $.csso()))
-        .pipe(gulp.dest('app/public/styles'))
-        .pipe($.size({title: 'Styles after compression'}));
+        //.pipe(rename({suffix:'.min'}))
+        //.pipe($.if('*.css', $.csso()))
+        //.pipe(gulp.dest('app/public/styles'))
+        //.pipe($.size({title: 'Styles after compression'}));
 });
 
 // Scan Your HTML For Assets & Optimize Them
@@ -133,11 +133,11 @@ gulp.task('htmlToPhp',function(){
 gulp.task('clean', del.bind(null, ['.tmp', 'public']));
 //js
 gulp.task('js',function(){
-    return gulp.src('app/scripts/**/*.js')
-        .pipe(gulp.dest('app/public/scripts'))
-        .pipe(rename({suffix:'.min'}))
-        .pipe($.uglify({preserveComments: 'some'}))
-        .pipe(gulp.dest('app/public/scripts'))
+    return gulp.src(['app/scripts/**/*.js'])
+        .pipe(gulp.dest('app/public/scripts'));
+        //.pipe(rename({suffix:'.min'}))
+        //.pipe($.uglify({preserveComments: 'some'}))
+        //.pipe(gulp.dest('app/public/scripts'))
 });
 // Watch Files For Changes & Reload
 gulp.task('serve', ['styles'], function () {
