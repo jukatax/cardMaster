@@ -3,9 +3,12 @@
 /*####################################################*/
 var app = angular.module('cardMaster', []);
 app.controller('cardMaster' , function($scope){
+    $scope.mobile = navigator.userAgent.match(/(mobile|iphone|ipad|x11|samsung)/i)?true:false;
     $scope.logo='';
     $scope.textLeft=6;
     $scope.textTop=10;
+    $scope.fxPos=10;
+    $scope.fyPos=50;
     $scope.showPrint = false;
     $scope.hideSettings = false;
     $scope.back = false;
@@ -81,17 +84,8 @@ app.controller('cardMaster' , function($scope){
         });
     }));*/
 
-    /*####################################################*/
-    //fix elem height of two main boxes
-    jQuery('.main-left').outerHeight()>jQuery('.main-center').outerHeight()?jQuery('.main-center,.main-right').outerHeight(jQuery('.main-left').outerHeight()):jQuery('.main-left,.main-right').outerHeight(jQuery('.main-center').outerHeight());
-    /*####################################################*/
-    //fix width of input labels
-    var lblWidths = [];
-    jQuery('.input-group-addon.lbl').each(function(ind,elem){
-        lblWidths.push(jQuery(elem).width());
-    });
-    lblWidths.sort(function(a, b){return b-a});
-    jQuery('.input-group-addon.lbl').width(lblWidths[0]);
+
+
     /*####################################################*/
     //fix width of input suffix labels
 
@@ -158,15 +152,10 @@ app.directive('myDraggable', ['$document', function($document) {
                     'border-radius': scope.bradius
                 });
                     scope.$apply(function () {
-                        scope.xPos = y;
-                        scope.yPos = x;
+                        scope.xPos = x;
+                        scope.yPos = y;
                     });
-            }
-
-               /*element.css({
-                    top: y + 'px',
-                    left: x + 'px'
-                });*/
+                }
             }
 
             function mouseup() {
@@ -182,4 +171,15 @@ app.directive('myDraggable', ['$document', function($document) {
 
 jQuery('document').ready(function(){
     jQuery('body').removeClass('hideMe');
+    /*####################################################*/
+    /*####################################################*/
+    //fix width of input labels
+    var lblWidths = [];
+    jQuery('.input-group-addon.lbl').each(function(ind,elem){
+        lblWidths.push(jQuery(elem).width());
+    });
+    lblWidths.sort(function(a, b){return b-a});
+    jQuery('.input-group-addon.lbl').width(lblWidths[0]);
+    //fix elem height of two main boxes
+    jQuery('.main-left').outerHeight()>jQuery('.main-center').outerHeight()?jQuery('.main-center,.main-right').outerHeight(jQuery('.main-left').outerHeight()):jQuery('.main-left,.main-right').outerHeight(jQuery('.main-center').outerHeight());
 });

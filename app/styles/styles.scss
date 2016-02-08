@@ -205,6 +205,7 @@ body{
                                         height:50px;
 
                                         &:hover{
+                                             cursor: move;
                                              .dragOverlay{
                                                   display:block;
 
@@ -226,6 +227,7 @@ body{
                                              display: block;
                                         }
                                         &:hover{
+                                             cursor: move;
                                              .dragOverlay{
                                                   display:block;
                                              }
@@ -654,6 +656,7 @@ body{
 @media screen and (max-width:991px){
      body {
           font-size: 1.2em;
+          overflow-x: hidden;
           nav {
                text-align: center;
                padding: .5em 0;
@@ -664,6 +667,19 @@ body{
           }
           .main-right{
                height: auto !important;
+          }
+     }
+}
+@media screen and (max-width:480px){
+     body {
+
+          .main-right{
+               height: auto !important;
+               .card-wrapper {
+                    .card-preview[class*=size]{
+                         width: 98.5%;
+                    }
+               }
           }
      }
 }
