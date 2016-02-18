@@ -44,7 +44,7 @@ app.controller('cardMaster' , function($scope){
         var imageType = /(image\/jpeg|image\/jpg|image\/png|image\/svg|image\/gif)/;
         console.log('File type: '+file.type+'\nFile size is: '+file.size+'\nFile name is: '+file.name+'\n');
         var elem = event.target.id;
-        if (file.type.match(imageType)) {
+        if (file.type.match(imageType) && window.FileReader) {
             var reader = new FileReader();
             reader.onload = function(event) {
                 var contents = event.target.result; //most useful for text files

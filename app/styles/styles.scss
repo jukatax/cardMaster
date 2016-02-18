@@ -183,15 +183,6 @@ body{
                               width:402.06px; //8.89cm
                               height:232.35px; //5.08cm
                          }
-                         .dragOverlay{
-                              display:none;
-                              position:absolute;
-                              top:40%;
-                              left:42%;
-                              color: #fff;
-                              background: rgba(0,0,0,0.3);
-                              border-radius: 5px;
-                          }
                          section{
                               &.logo {
                                    position: relative;
@@ -206,10 +197,6 @@ body{
 
                                         &:hover{
                                              cursor: move;
-                                             .dragOverlay{
-                                                  display:block;
-
-                                             }
                                         }
                                    }
 
@@ -228,9 +215,6 @@ body{
                                         }
                                         &:hover{
                                              cursor: move;
-                                             .dragOverlay{
-                                                  display:block;
-                                             }
                                         }
                                         .group1details {
                                              margin-bottom:5px;
@@ -409,15 +393,6 @@ body{
                &.sizeUS{
                     width:402.06px; //8.89cm
                     height:232.35px; //5.08cm
-               }
-               .dragOverlay{
-                    display:none;
-                    position:absolute;
-                    top:40%;
-                    left:42%;
-                    color: #fff;
-                    background: rgba(0,0,0,0.3);
-                    border-radius: 5px;
                }
                section{
                     &.logo {
