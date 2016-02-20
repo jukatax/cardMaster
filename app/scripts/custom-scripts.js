@@ -15,6 +15,7 @@ app.controller('cardMaster' , function($scope){
     $scope.print = true;
     $scope.backgroundImage='';
     $scope.logoImage='';
+    $scope.bImage = '';
     $scope.printMe = function(){
         for(var i=0;i<8;i++){
             jQuery('.main-right .card-preview').clone().appendTo('#printingContainer .row');
@@ -33,7 +34,7 @@ app.controller('cardMaster' , function($scope){
     };
     $scope.clearVal = function(a){
         jQuery('#'+a).val('');
-        a.match('cimage')?jQuery('.companyLogo').css({'background':'none'}):jQuery('.card-preview').css({'background':'none'});
+        a.match('cimage')?jQuery('.companyLogo').css({'background-image':'none'}):jQuery('.card-preview').css({'background-image':'none'});
     };
     /*####################################################*/
     //file upload to background image
@@ -49,7 +50,8 @@ app.controller('cardMaster' , function($scope){
             reader.onload = function(event) {
                 var contents = event.target.result; //most useful for text files
                 if(elem=='bimage'){
-                    jQuery('.card-preview').css({'background':'url("'+reader.result+'") no-repeat center center','background-size':'cover'});
+                    $scope.bImage = reader.result;
+                    jQuery('.card-preview').css({'background':'url("'+reader.result+'") no-repeat center center','background-size':'cover','background-color':$scope.backgroundColor});
                     //$scope.backgroundImage=reader.result;
                 }else{
                     jQuery('.companyLogo').css({'background':'url("'+reader.result+'") no-repeat center center','background-size':'cover'});

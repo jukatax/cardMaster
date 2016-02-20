@@ -20,7 +20,7 @@
 
     <title>Free Online Business Card maker</title>
 </head>
-<body class="hideMe cardMaster" data-ng-app="cardMaster" data-ng-controller='cardMaster' data-ng-init="name='John Doe';occupation='Front-end Web Developer';email='myemail@domain.com';tel='02001234567';mob='07401234567';address1='some street';city='some town';pc='postcode';theme='';size='sizeUK';xPos='1';yPos='1';logoSize=80;bradius=0;fSize=10;fcolor='#000000';fweight=400;fType='Helvetica Neue';">
+<body class="hideMe cardMaster" data-ng-app="cardMaster" data-ng-controller='cardMaster' data-ng-init="name='John Doe';occupation='Front-end Web Developer';email='myemail@domain.com';tel='02001234567';mob='07401234567';address1='some street';city='some town';pc='postcode';theme='';size='sizeUK';xPos='1';yPos='1';logoSize=80;bradius=0;fSize=10;fcolor='#000000';fweight=400;fType='Helvetica Neue';backgroundColor='#fff';">
 <nav class="navbar navbar-default">
     <a id="link_about" href="../index.php#about" onClick="ga('send', 'event', 'Links', 'ClickProfile', 'Profile');">About</a>
     <a id='link_services' href='../index.php#services' onClick="ga('send', 'event', 'Links', 'ClickServices', 'Services');">Services</a>
@@ -99,16 +99,15 @@
                         <p class="imageError bg-danger" style="display:none;">Only image files are supported - jpg, jpeg, png, gif.</p>
                     </div>
                     <div class="form-group">
+                        <label for="bcolor">Background color</label>
+                        <input type="color" id="bcolor" name="bcolor" data-ng-model="backgroundColor">
+                        <!--<p class="imageError bg-danger" style="display:none;">Only image files are supported - jpg, jpeg, png, gif.</p>-->
+                    </div>
+                    <div class="form-group">
                         <label for="cimage">Company logo</label> <i class="fa fa-times text-danger" data-ng-click="clearVal('cimage')" ></i>
                         <input type="file" id="cimage" name="cimage"  data-ng-model="logoImage">
                         <p class="imageError bg-danger" style="display:none;">Only image files are supported - jpg, jpeg, png, gif.</p>
                     </div>
-                    <div class="checkbox hidden">
-                        <label>
-                            <input type="checkbox"> Check me out
-                        </label>
-                    </div>
-                    <button type="submit" class="btn btn-default hidden">Preview</button>
                     <div id="message"></div>
                 </form>
             </div>
@@ -145,28 +144,28 @@
                             <div class="input-group">
                                 <span class="input-group-addon lbl">Logo size</span>
                                 <input type="range" class="form-control"  name="logoSize" min="20" step='5' max="200" value="{{logoSize}}" id="logoSize" data-ng-model="logoSize" />
-                                <span class="input-group-addon slbl">{{logoSize}}</span>
+                                <span class="input-group-addon slbl" data-ng-cloak>{{logoSize}}</span>
                             </div>
                         </div>
                         <div class="form-group fSize">
                             <div class="input-group">
                                 <span class="input-group-addon lbl">Logo corners</span>
                                 <input type="range" class="form-control"  name="bradius" min="0" step='1' max="{{logoSize/2}}" value="0" id="bradius" data-ng-model="bradius" />
-                                <span class="input-group-addon slbl">{{bradius}}</span>
+                                <span class="input-group-addon slbl" data-ng-cloak>{{bradius}}</span>
                             </div>
                         </div>
                         <div class="form-group fSize" data-ng-show="mobile">
                             <div class="input-group">
                                 <span class="input-group-addon lbl">Logo x</span>
                                 <input type="range" class="form-control"  name="xPos" min="0" step='1' max="{{406-logosize}}" value="0" id="xPos" data-ng-model="xPos" />
-                                <span class="input-group-addon slbl">{{xPos}}</span>
+                                <span class="input-group-addon slbl" data-ng-cloak>{{xPos}}</span>
                             </div>
                         </div>
                         <div class="form-group fSize" data-ng-show="mobile">
                             <div class="input-group">
                                 <span class="input-group-addon lbl">Logo y</span>
                                 <input type="range" class="form-control"  name="yPos" min="0" step='1' max="{{251-logosize}}" value="0" id="yPos" data-ng-model="yPos" />
-                                <span class="input-group-addon slbl">{{yPos}}</span>
+                                <span class="input-group-addon slbl" data-ng-cloak>{{yPos}}</span>
                             </div>
                         </div>
 
@@ -181,14 +180,14 @@
                         <div class="input-group">
                             <span class="input-group-addon lbl">Text x</span>
                             <input type="range" class="form-control"  name="textLeft" min="-200" step='1' max="400" value="0" id="textLeft" data-ng-model="textLeft" />
-                            <span class="input-group-addon slbl">{{textLeft}}</span>
+                            <span class="input-group-addon slbl" data-ng-cloak>{{textLeft}}</span>
                         </div>
                     </div>
                     <div class="form-group fSize" data-ng-show="mobile">
                         <div class="input-group">
                             <span class="input-group-addon lbl">Text y</span>
                             <input type="range" class="form-control"  name="textTop" min="-200" step='1' max="251" value="0" id="textTop" data-ng-model="textTop" />
-                            <span class="input-group-addon slbl">{{textTop}}</span>
+                            <span class="input-group-addon slbl" data-ng-cloak>{{textTop}}</span>
                         </div>
                     </div>
                     <div class="form-group fSize">
@@ -232,7 +231,7 @@
             <div class="col-md-6 text-left main-right ">
                 <div class="card-wrapper">
 
-                    <div class="card-preview {{theme}} {{size}}">
+                    <div class="card-preview {{theme}} {{size}}" style="background-color:{{backgroundColor}};background-image:url('{{bImage}}') ;background-repeat:no-repeat; background-position:center center; background-size:cover;">
                         <section class="logo ">
                             <div class="companyLogo" data-my-draggable style="position:absolute!important;top:{{yPos}}px!important;left:{{xPos}}px!important;width:{{logoSize}}px;height:{{logoSize}}px;background:url('{{logo}}') no-repeat center center;background-size:cover;border-radius:{{bradius}}px"><!--<i class="fa fa-arrows fa-2x dragOverlay"></i>--></div>
                         </section>
@@ -241,15 +240,15 @@
                                 <span class="group1details">
                                     <span data-ng-show="name.length" data-ng-bind="name" class="pdata name"></span>
                                     <span data-ng-show="occupation.length" data-ng-bind="occupation" class="pdata occupation"></span>
-                                    <span data-ng-show="email.length" class="pdata email"><i class="fa fa-envelope-o"></i>&nbsp;&nbsp; {{email}}</span>
-                                    <span data-ng-show="www.length" class="pdata www"><i class="fa fa-at"></i>&nbsp;&nbsp; {{www}}</span>
-                                    <span data-ng-show="tel.length" class="pdata tel "><i class="fa fa-phone" data-ng-show="tel.length"></i>&nbsp;&nbsp; {{tel}}</span>
-                                    <span data-ng-show="mob.length" class="pdata mob"><i class="fa fa-mobile fa-2" data-ng-show="mob.length"></i>&nbsp;&nbsp;&nbsp; {{mob}}</span>
+                                    <span data-ng-show="email.length" class="pdata email" data-ng-cloak><i class="fa fa-envelope-o"></i>&nbsp;&nbsp; {{email}}</span>
+                                    <span data-ng-show="www.length" class="pdata www" data-ng-cloak><i class="fa fa-at"></i>&nbsp;&nbsp; {{www}}</span>
+                                    <span data-ng-show="tel.length" class="pdata tel " data-ng-cloak><i class="fa fa-phone" data-ng-show="tel.length"></i>&nbsp;&nbsp; {{tel}}</span>
+                                    <span data-ng-show="mob.length" class="pdata mob" data-ng-cloak><i class="fa fa-mobile fa-2" data-ng-show="mob.length"></i>&nbsp;&nbsp;&nbsp; {{mob}}</span>
                                 </span>
                                 <span class="group2details">
                                     <span data-ng-show="cardDetails.address1" data-ng-bind="address1" class="pdata address1"></span>
-                                    <span data-ng-show="city.length" class="city pdata ">{{city}}</span>
-                                    <span data-ng-show="pc.length" class="pc pdata ">{{pc}}</span>
+                                    <span data-ng-show="city.length" class="city pdata " data-ng-cloak>{{city}}</span>
+                                    <span data-ng-show="pc.length" class="pc pdata " data-ng-cloak>{{pc}}</span>
                                 </span>
                                 <!--<i class="fa fa-arrows fa-2x dragOverlay"></i>-->
                             </div>
