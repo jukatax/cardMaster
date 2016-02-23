@@ -227,13 +227,14 @@
                     </div>
                 </form>
             </div>
+
             <!-- Right container to host the visual of the card -->
             <div class="col-md-6 text-left main-right ">
                 <div class="card-wrapper">
-
-                    <div class="card-preview {{theme}} {{size}}" style="background-color:{{backgroundColor}};background-image:url('{{bImage}}') ;background-repeat:no-repeat; background-position:center center; background-size:cover;">
+                    {{backgroundImage}}
+                    <div class="card-preview {{theme}} {{size}}" style="background-color:{{backgroundColor}};background-image:url('{{backgroundImage}}') ;background-repeat:no-repeat; background-position:center center; background-size:cover;">
                         <section class="logo ">
-                            <div class="companyLogo" data-my-draggable style="position:absolute!important;top:{{yPos}}px!important;left:{{xPos}}px!important;width:{{logoSize}}px;height:{{logoSize}}px;background:url('{{logo}}') no-repeat center center;background-size:cover;border-radius:{{bradius}}px"><!--<i class="fa fa-arrows fa-2x dragOverlay"></i>--></div>
+                            <div class="companyLogo" data-my-draggable style="position:absolute!important;top:{{yPos}}px!important;left:{{xPos}}px!important;width:{{logoSize}}px;height:{{logoSize}}px;background:url('{{logoImage}}') no-repeat center center;background-size:cover;border-radius:{{bradius}}px"><!--<i class="fa fa-arrows fa-2x dragOverlay"></i>--></div>
                         </section>
                         <section class="personal-details ">
                             <div class="moveTextWrapper" data-my-draggable style="position:absolute!important;top:{{fypos+textTop}}px!important;left:{{fxpos+textLeft}}px!important;color:{{fcolor}}!important;font-size:{{fSize}}px!important;font-weight:{{fweight}}!important;font-family:'{{fType}}'!important;">

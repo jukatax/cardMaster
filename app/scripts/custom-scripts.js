@@ -34,7 +34,13 @@ app.controller('cardMaster' , function($scope){
     };
     $scope.clearVal = function(a){
         jQuery('#'+a).val('');
-        a.match('cimage')?jQuery('.companyLogo').css({'background-image':'none'}):jQuery('.card-preview').css({'background-image':'none'});
+        if(a.match('cimage')){
+            jQuery('.companyLogo').css({'background-image':'none','background-attachment':'none'});
+                $scope.logoImage = '';
+        }else{
+            jQuery('.card-preview').css({'background-image':'','background-attachment':'none'});
+                $scope.backgroundImage='';
+        }
     };
     /*####################################################*/
     //file upload to background image
@@ -50,13 +56,13 @@ app.controller('cardMaster' , function($scope){
             reader.onload = function(event) {
                 var contents = event.target.result; //most useful for text files
                 if(elem=='bimage'){
-                    $scope.bImage = reader.result;
+                    $scope.backgroundImage = reader.result;
                     jQuery('.card-preview').css({'background':'url("'+reader.result+'") no-repeat center center','background-size':'cover','background-color':$scope.backgroundColor});
                     //$scope.backgroundImage=reader.result;
                 }else{
                     jQuery('.companyLogo').css({'background':'url("'+reader.result+'") no-repeat center center','background-size':'cover'});
                     //$scope.logoImage=reader.result;
-                    $scope.logo = reader.result;
+                    $scope.logoImage = reader.result;
                 }
             };
             reader.readAsDataURL(file);
