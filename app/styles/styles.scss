@@ -160,7 +160,7 @@ body{
                          border-radius:4px;
                          margin:0 auto;
                          position:relative;
-                         @include transition(all , 0.75s , linear);
+                         @include transition(width , 0.75s , linear);
                          &.default{
                               border: 1px solid #aaa;
                               border-radius: 4px;
