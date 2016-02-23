@@ -20,11 +20,12 @@ $white : #fff;
      background: linear-gradient(to bottom,  #{$start} 0%,#{$end} 66%);
      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$start}', endColorstr='#{$end}',GradientType=0 );
 }
-@mixin transition($what , $duration , $easing){
-     transition: #{$what} #{$duration} #{$easing};
-     -moz-transition: #{$what} #{$duration} #{$easing};
-     -webkit-transition: #{$what} #{$duration} #{$easing};
-     -o-transition: #{$what} #{$duration} #{$easing};
+@mixin transition($args...) {
+     -webkit-transition: $args;
+     -moz-transition: $args;
+     -ms-transition: $args;
+     -o-transition: $args;
+     transition: $args;
 }
 @mixin clearFix($elem){
      #{$elem}::after{
@@ -160,7 +161,7 @@ body{
                          border-radius:4px;
                          margin:0 auto;
                          position:relative;
-                         @include transition(width , 0.75s , linear);
+                         @include transition(width 0.75s linear , height 0.75s linear );
                          &.default{
                               border: 1px solid #aaa;
                               border-radius: 4px;
