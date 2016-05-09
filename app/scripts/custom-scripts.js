@@ -16,6 +16,7 @@ app.controller('cardMaster' , function($scope){
     $scope.backgroundImage='';
     $scope.logoImage='';
     $scope.bImage = '';
+    $scope.rotateBtn = false;
     $scope.printMe = function(){
         for(var i=0;i<8;i++){
             jQuery('.main-right .card-preview').clone().appendTo('#printingContainer .row');
@@ -37,6 +38,7 @@ app.controller('cardMaster' , function($scope){
         if(a.match('cimage')){
             jQuery('.companyLogo').css({'background-image':'none','background-attachment':'none'});
                 $scope.logoImage = '';
+                $scope.rotateBtn = false;
         }else{
             jQuery('.card-preview').css({'background-image':'','background-attachment':'none'});
                 $scope.backgroundImage='';
@@ -57,10 +59,12 @@ app.controller('cardMaster' , function($scope){
                 var contents = event.target.result; //most useful for text files
                 if(elem=='bimage'){
                     $scope.backgroundImage = reader.result;
-                    jQuery('.card-preview').css({'background':'url("'+reader.result+'") no-repeat center center','background-size':'cover','background-color':$scope.backgroundColor});
+                    jQuery('.card-preview').css({'background':'url("'+reader.result+'") no-repeat center center','background-size':'cover','background-color':$scope.backgroundColor}).attr('data-img' , reader.result);
                     //$scope.backgroundImage=reader.result;
                 }else{
-                    jQuery('.companyLogo').css({'background':'url("'+reader.result+'") no-repeat center center','background-size':'cover'});
+                    jQuery('.companyLogo').css({'background':'url("'+reader.result+'") no-repeat center center','background-size':'cover'}).attr('data-img' , reader.result);
+                    $scope.$emit('imageChanged');
+                    $scope.rotateBtn = true;
                     //$scope.logoImage=reader.result;
                     $scope.logoImage = reader.result;
                 }
@@ -103,9 +107,9 @@ app.controller('cardMaster' , function($scope){
         restrict: 'A',
         controller : 'cardMaster',
         link: function(scope, element, attr, ctrl){
-            /!*####################################################*!/
-            /!*################# Handle PDF #######################*!/
-            /!*####################################################*!/
+            //*####################################################*!/
+            //*################# Handle PDF #######################*!/
+            //*####################################################*!/
             var doc = new jsPDF();
             var specialElementHandlers = {
                 '#editor': function (element, renderer) {
@@ -121,9 +125,9 @@ app.controller('cardMaster' , function($scope){
                 });
                 doc.save('sample-file.pdf');
             });
-            /!*####################################################*!/
-            /!*####################################################*!/
-            /!*####################################################*!/
+            //*####################################################*!/
+            //*####################################################*!/
+            //*####################################################*!/
 
         }
     }
@@ -157,7 +161,8 @@ app.directive('myDraggable', ['$document', function($document) {
                 element.css({
                     top: y + 'px',
                     left: x + 'px',
-                    'border-radius': scope.bradius
+                    'border-radius': scope.bradius,
+                    'background' : 'url('+scope.logoImage+') no-repeat center center' //if image has been rotated keep the rotated one
                 });
                     scope.$apply(function () {
                         scope.xPos = x;
@@ -170,6 +175,70 @@ app.directive('myDraggable', ['$document', function($document) {
                 $document.off('mousemove', mousemove);
                 $document.off('mouseup', mouseup);
             }
+        }
+    };
+}]);
+//*#####################################################################*!/
+//*################## rotater for background image #####################*!/
+//*#####################################################################*!/
+app.directive('rotater', ['$document', function($document) {
+    return {
+        restrict : "A",
+        controller : 'cardMaster',
+        link: function (scope, element, attr, ctrl) {
+            var angleInDegrees;
+            //create temp canvas
+            var canvas = document.createElement('canvas');
+            canvas.width = element.width;
+            canvas.height = element.height;
+            //document.body.appendChild(canvas);
+            var ctx = canvas.getContext('2d');
+
+            //create temp image
+            var image=document.createElement("img");
+            image.setAttribute('crossOrigin' , 'Anonymous');
+            image.onload=function(){
+                ctx.drawImage(image,canvas.width/2-image.width/2,canvas.height/2-image.width/2);
+            };
+            scope.$on('imageChanged' , function(){
+                console.log('#### data-img changed ####');
+                scope.$apply(function(){
+                    scope.rotateBtn = true;
+                });
+                image.src = jQuery(element).attr('data-img');
+                canvas.width = image.width;
+                canvas.height = image.height;
+                angleInDegrees=0;
+            });
+
+            //document.body.appendChild(image);
+
+            scope.rotater = function(){
+                angleInDegrees=90;
+                drawRotated(angleInDegrees);
+            };
+
+            function drawRotated(degrees){
+                ctx.clearRect(0,0,image.width,image.height);
+                ctx.save();
+                ctx.translate(canvas.width/2,canvas.height/2);
+                ctx.rotate(degrees*Math.PI/180);
+                ctx.drawImage(image,-image.width/2,-image.width/2);
+                ctx.restore();
+                //update the image
+                setTimeout(function(){
+                    image.setAttribute( 'src' , canvas.toDataURL() );
+                    element.attr('data-img' , canvas.toDataURL());
+                    element.css({'background-image':'url('+canvas.toDataURL()+')' , 'background' : 'url('+canvas.toDataURL()+') no-repeat center center','background-size':'cover'});
+
+                    scope.$apply(function(){
+                        scope.logoImage = canvas.toDataURL();
+                    });
+
+                } , 500);
+            }
+
+
         }
     };
 }]);

@@ -1,0 +1,377 @@
+/*  img/image.jpg  */
+body {
+  background: url("../../imgs/backgrnd_3.jpg") no-repeat center center #fff;
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: Verdana, Helvetica, sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased; }
+  body.hideMe {
+    visibility: hidden; }
+  body nav {
+    margin-bottom: 2em;
+    background: #333333 !important;
+    color: #eeeeee; }
+    body nav a {
+      font-size: 1.1em;
+      display: inline-block;
+      font-family: 'Oswald',Verdana, Helvetica, sans-serif;
+      text-decoration: none;
+      color: #eeeeee;
+      padding: .4em;
+      text-shadow: none; }
+  body .navbar a {
+    font-size: 1.1em;
+    display: inline-block;
+    font-family: 'Oswald',Verdana, Helvetica, sans-serif;
+    text-decoration: none;
+    color: #eeeeee;
+    text-shadow: none;
+    padding: 0.8em .5em; }
+  body a.backtotop {
+    display: none;
+    width: 96%;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    color: #6CF;
+    font-weight: bold;
+    text-align: right; }
+  body a.snippet {
+    font-family: 'Oswald', Verdana, Helvetica, sans-serif;
+    text-decoration: none;
+    color: #eeeeee;
+    padding: .4em;
+    text-shadow: none; }
+  body a:hover {
+    text-decoration: none;
+    color: #0CADE8; }
+  body a:focus {
+    outline: none; }
+  body a.active {
+    text-decoration: underline;
+    color: #0CADE8; }
+  body a.button {
+    padding: 0.7em;
+    display: block;
+    border: 1px solid #333333;
+    border-radius: 3px;
+    background: #0CADE8;
+    color: #fff;
+    text-align: center;
+    width: 200px;
+    margin: 0 auto; }
+    body a.button:hover {
+      background: #fff;
+      color: #0CADE8; }
+  body .bottom_nav {
+    background: #333333;
+    color: #eeeeee; }
+  body h1 {
+    color: #000;
+    text-align: center; }
+  body h2 {
+    font-size: 20px; }
+  body .bordered {
+    border: 1px solid #aaa;
+    border-radius: 4px; }
+  body .padded {
+    padding: 10px; }
+  body .main-left, body .main-right {
+    padding: 1em; }
+  body .main-left .fa-mobile {
+    font-size: 1.45em; }
+  body .main-left .fa-times {
+    cursor: pointer; }
+  body .main-left #cardDetails #bcolor {
+    color: #555;
+    background: #fff; }
+  body .main-right {
+    background: #fff; }
+    body .main-right .card-wrapper {
+      margin: 0 auto; }
+      body .main-right .card-wrapper .theme-wrapper {
+        width: 8.5cm;
+        margin: 0 auto 20px auto; }
+      body .main-right .card-wrapper .card-preview {
+        border: 1px solid #aaa;
+        border-radius: 4px;
+        margin: 0 auto;
+        position: relative;
+        -webkit-transition: width 0.75s linear, height 0.75s linear;
+        -moz-transition: width 0.75s linear, height 0.75s linear;
+        -ms-transition: width 0.75s linear, height 0.75s linear;
+        -o-transition: width 0.75s linear, height 0.75s linear;
+        transition: width 0.75s linear, height 0.75s linear; }
+        body .main-right .card-wrapper .card-preview.default {
+          border: 1px solid #aaa;
+          border-radius: 4px;
+          margin: 0 auto;
+          position: relative; }
+        body .main-right .card-wrapper .card-preview.sizeUK {
+          width: 384.68px;
+          height: 251.06px; }
+        body .main-right .card-wrapper .card-preview.sizeBG {
+          width: 406.96px;
+          height: 228.78px; }
+        body .main-right .card-wrapper .card-preview.sizeHK {
+          width: 406.96px;
+          height: 246.60px; }
+        body .main-right .card-wrapper .card-preview.sizeUS {
+          width: 402.06px;
+          height: 232.35px; }
+        body .main-right .card-wrapper .card-preview section.logo {
+          position: relative;
+          float: left;
+          width: 50%; }
+          body .main-right .card-wrapper .card-preview section.logo .companyLogo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 50px;
+            height: 50px; }
+            body .main-right .card-wrapper .card-preview section.logo .companyLogo:hover {
+              cursor: move; }
+        body .main-right .card-wrapper .card-preview section.personal-details {
+          position: relative;
+          font-size: 10px;
+          float: right;
+          width: 50%; }
+          body .main-right .card-wrapper .card-preview section.personal-details .moveTextWrapper {
+            width: 95%; }
+            body .main-right .card-wrapper .card-preview section.personal-details .moveTextWrapper span.pdata {
+              padding: 1px 0;
+              margin: 0;
+              display: block; }
+            body .main-right .card-wrapper .card-preview section.personal-details .moveTextWrapper:hover {
+              cursor: move; }
+            body .main-right .card-wrapper .card-preview section.personal-details .moveTextWrapper .group1details {
+              margin-bottom: 5px;
+              display: block; }
+              body .main-right .card-wrapper .card-preview section.personal-details .moveTextWrapper .group1details .group1details::after {
+                content: "";
+                display: table;
+                clear: both; }
+              body .main-right .card-wrapper .card-preview section.personal-details .moveTextWrapper .group1details .name {
+                font-size: 1.1em; }
+              body .main-right .card-wrapper .card-preview section.personal-details .moveTextWrapper .group1details .occupation {
+                margin-bottom: 5px; }
+              body .main-right .card-wrapper .card-preview section.personal-details .moveTextWrapper .group1details .mob .fa-2 {
+                font-size: 1.25em; }
+            body .main-right .card-wrapper .card-preview section.personal-details .moveTextWrapper .group2details {
+              display: block; }
+              body .main-right .card-wrapper .card-preview section.personal-details .moveTextWrapper .group2details .group2details::after {
+                content: "";
+                display: table;
+                clear: both; }
+      body .main-right .card-wrapper .card-preview.theme2 section.logo img {
+        width: 50px;
+        height: 50px; }
+      body .main-right .card-wrapper .card-preview.theme2 section.personal-details {
+        width: 100%; }
+        body .main-right .card-wrapper .card-preview.theme2 section.personal-details .group1details {
+          display: inline-block;
+          width: 49%;
+          margin: 0; }
+          body .main-right .card-wrapper .card-preview.theme2 section.personal-details .group1details .name {
+            font-size: 1.2em; }
+        body .main-right .card-wrapper .card-preview.theme2 section.personal-details .group2details {
+          display: inline-block;
+          width: 49%; }
+      body .main-right .card-wrapper .card-preview.theme3 section.logo img {
+        width: 50px;
+        height: 50px; }
+  body #loading {
+    display: none;
+    background: url("../img/AjaxLoader.gif") no-repeat center center; }
+  body #printingContainer {
+    -webkit-transition: all, 0.75s, linear;
+    -moz-transition: all, 0.75s, linear;
+    -ms-transition: all, 0.75s, linear;
+    -o-transition: all, 0.75s, linear;
+    transition: all, 0.75s, linear;
+    width: 941.48px;
+    height: 1150px;
+    margin: 0 auto;
+    padding: 0 45px;
+    background: #fff;
+    overflow: hidden; }
+    body #printingContainer .card-preview {
+      float: left;
+      margin: 1em; }
+    body #printingContainer .card-preview {
+      border: 1px solid #aaa;
+      border-radius: 4px;
+      position: relative;
+      -webkit-transition: all, 0.75s, linear;
+      -moz-transition: all, 0.75s, linear;
+      -ms-transition: all, 0.75s, linear;
+      -o-transition: all, 0.75s, linear;
+      transition: all, 0.75s, linear; }
+      body #printingContainer .card-preview.default {
+        border: 1px solid #aaa;
+        border-radius: 4px;
+        margin: 0 auto;
+        position: relative; }
+      body #printingContainer .card-preview.sizeUK {
+        width: 384.68px;
+        height: 251.06px; }
+      body #printingContainer .card-preview.sizeBG {
+        width: 406.96px;
+        height: 228.78px; }
+      body #printingContainer .card-preview.sizeHK {
+        width: 406.96px;
+        height: 246.60px; }
+      body #printingContainer .card-preview.sizeUS {
+        width: 402.06px;
+        height: 232.35px; }
+      body #printingContainer .card-preview section.logo {
+        position: relative;
+        float: left;
+        width: 50%; }
+        body #printingContainer .card-preview section.logo .companyLogo {
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          width: 50px;
+          height: 50px; }
+          body #printingContainer .card-preview section.logo .companyLogo:hover .dragOverlay {
+            display: none; }
+      body #printingContainer .card-preview section.personal-details {
+        position: relative;
+        font-size: 10px;
+        float: right;
+        width: 50%; }
+        body #printingContainer .card-preview section.personal-details .moveTextWrapper {
+          width: 95%; }
+          body #printingContainer .card-preview section.personal-details .moveTextWrapper span.pdata {
+            padding: 1px 0;
+            margin: 0;
+            display: block; }
+          body #printingContainer .card-preview section.personal-details .moveTextWrapper:hover .dragOverlay {
+            display: none; }
+          body #printingContainer .card-preview section.personal-details .moveTextWrapper .group1details {
+            margin-bottom: 5px;
+            display: block; }
+            body #printingContainer .card-preview section.personal-details .moveTextWrapper .group1details .group1details::after {
+              content: "";
+              display: table;
+              clear: both; }
+            body #printingContainer .card-preview section.personal-details .moveTextWrapper .group1details .name {
+              font-size: 1.1em; }
+            body #printingContainer .card-preview section.personal-details .moveTextWrapper .group1details .occupation {
+              margin-bottom: 5px; }
+            body #printingContainer .card-preview section.personal-details .moveTextWrapper .group1details .mob .fa-2 {
+              font-size: 1.25em; }
+          body #printingContainer .card-preview section.personal-details .moveTextWrapper .group2details {
+            display: block; }
+            body #printingContainer .card-preview section.personal-details .moveTextWrapper .group2details .group2details::after {
+              content: "";
+              display: table;
+              clear: both; }
+    body #printingContainer .card-preview.theme2 section.logo img {
+      width: 50px;
+      height: 50px; }
+    body #printingContainer .card-preview.theme2 section.personal-details {
+      width: 100%; }
+      body #printingContainer .card-preview.theme2 section.personal-details .group1details {
+        display: inline-block;
+        width: 49%;
+        margin: 0; }
+        body #printingContainer .card-preview.theme2 section.personal-details .group1details .name {
+          font-size: 1.2em; }
+      body #printingContainer .card-preview.theme2 section.personal-details .group2details {
+        display: inline-block;
+        width: 49%; }
+  body footer {
+    width: 100%;
+    border: none;
+    margin: 0 auto;
+    max-width: 1280px;
+    font-family: 'Oswald',Verdana, Helvetica, sans-serif;
+    text-align: center; }
+    body footer .donate .paypal {
+      width: 200px;
+      margin: 0 auto;
+      padding-bottom: 10px; }
+    body footer .social ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0 0 8px; }
+      body footer .social ul li a {
+        display: block;
+        text-indent: -9999px;
+        width: 40px;
+        height: 40px; }
+      body footer .social ul li a.fb {
+        background: url("../../imgs/social.png") 2px -52px; }
+      body footer .social ul li a.fb:hover {
+        background: url("../../imgs/social.png") 2px -2px; }
+      body footer .social ul li a.tw {
+        background: url("../../imgs/social.png") -42px -52px; }
+      body footer .social ul li a.tw:hover {
+        background: url("../../imgs/social.png") -42px -2px; }
+      body footer .social ul li a.gp {
+        background: url("../../imgs/social.png") -82px -52px; }
+      body footer .social ul li a.gp:hover {
+        background: url("../../imgs/social.png") -82px -2px; }
+      body footer .social ul li a.pi {
+        background: url("../../imgs/social.png") -162px -52px; }
+      body footer .social ul li a.pi:hover {
+        background: url("../../imgs/social.png") -162px -2px; }
+      body footer .social ul li a.li {
+        background: url("../../imgs/social.png") -282px -52px; }
+      body footer .social ul li a.li:hover {
+        background: url("../../imgs/social.png") -282px -2px; }
+      body footer .social ul li.share {
+        margin: 0 10px;
+        width: 40px;
+        height: 40px;
+        display: inline-block; }
+    body footer p a {
+      font-size: 1.1em;
+      display: inline-block;
+      font-family: 'Oswald',Verdana, Helvetica, sans-serif;
+      text-decoration: none;
+      color: #eeeeee;
+      padding: .4em;
+      text-shadow: none; }
+  body .w3cicons {
+    text-align: center;
+    margin: 5px 0; }
+    body .w3cicons .fa {
+      margin: 2px 5px;
+      padding: 5px;
+      background: #eee;
+      border-radius: 5px; }
+  body .companyf {
+    background: #fff;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 3px;
+    border-radius: 4px; }
+
+@media screen and (max-width: 991px) {
+  body {
+    font-size: 1.2em;
+    overflow-x: hidden; }
+    body nav {
+      text-align: center;
+      padding: .5em 0; }
+    body .main-center {
+      height: auto !important;
+      padding-bottom: 10px; }
+    body .main-right {
+      height: auto !important; } }
+@media screen and (max-width: 480px) {
+  body .main-right {
+    height: auto !important; }
+    body .main-right .card-wrapper .card-preview[class*=size] {
+      width: 98.5%; } }
+@media print {
+  html {
+    background: #fff; }
+    html body {
+      background: #fff; }
+      html body h1, html body nav, html body .main-left, html body .main-center, html body .main-right .printBtnWrapper, html body .backBtnWrapper, html body .print, html body footer, html body .w3cicons {
+        display: none !important; } }
+
+/*# sourceMappingURL=styles.css.map */
