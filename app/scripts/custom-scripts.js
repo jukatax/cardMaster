@@ -17,6 +17,7 @@ app.controller('cardMaster' , function($scope){
     $scope.logoImage='';
     $scope.bImage = '';
     $scope.rotateBtn = false;
+    $scope.bckrndRemove = false;
     $scope.printMe = function(){
         for(var i=0;i<8;i++){
             jQuery('.main-right .card-preview').clone().appendTo('#printingContainer .row');
@@ -42,6 +43,7 @@ app.controller('cardMaster' , function($scope){
         }else{
             jQuery('.card-preview').css({'background-image':'','background-attachment':'none'});
                 $scope.backgroundImage='';
+                $scope.bckrndRemove = false;
         }
     };
     /*####################################################*/
@@ -60,13 +62,20 @@ app.controller('cardMaster' , function($scope){
                 if(elem=='bimage'){
                     $scope.backgroundImage = reader.result;
                     jQuery('.card-preview').css({'background':'url("'+reader.result+'") no-repeat center center','background-size':'cover','background-color':$scope.backgroundColor}).attr('data-img' , reader.result);
+                    //$scope.$emit('imageChanged' , 'bimage');
+                    $scope.$apply(function(){
+                        $scope.bckrndRemove = true;
+                        $scope.backgroundImage=reader.result;
+                    });
+                    $scope.bckrndRemove = true;
                     //$scope.backgroundImage=reader.result;
                 }else{
                     jQuery('.companyLogo').css({'background':'url("'+reader.result+'") no-repeat center center','background-size':'cover'}).attr('data-img' , reader.result);
-                    $scope.$emit('imageChanged');
-                    $scope.rotateBtn = true;
-                    //$scope.logoImage=reader.result;
-                    $scope.logoImage = reader.result;
+                    $scope.$emit('imageChanged' , 'cimage');
+                    $scope.$apply(function() {
+                        $scope.rotateBtn = true;
+                        $scope.logoImage = reader.result;
+                    });
                 }
             };
             reader.readAsDataURL(file);
@@ -191,7 +200,6 @@ app.directive('rotater', ['$document', function($document) {
             var canvas = document.createElement('canvas');
             canvas.width = element.width;
             canvas.height = element.height;
-            //document.body.appendChild(canvas);
             var ctx = canvas.getContext('2d');
 
             //create temp image
@@ -200,25 +208,21 @@ app.directive('rotater', ['$document', function($document) {
             image.onload=function(){
                 ctx.drawImage(image,canvas.width/2-image.width/2,canvas.height/2-image.width/2);
             };
-            scope.$on('imageChanged' , function(){
-                console.log('#### data-img changed ####');
-                scope.$apply(function(){
-                    scope.rotateBtn = true;
-                });
+            scope.$on('imageChanged' , function(e,target){
+                console.log('#### data-img changed ####',target);
                 image.src = jQuery(element).attr('data-img');
                 canvas.width = image.width;
                 canvas.height = image.height;
                 angleInDegrees=0;
+                jQuery(window).trigger('getres');
             });
 
-            //document.body.appendChild(image);
-
-            scope.rotater = function(){
+            scope.rotater = function(target){
                 angleInDegrees=90;
-                drawRotated(angleInDegrees);
+                drawRotated(angleInDegrees , target);
             };
 
-            function drawRotated(degrees){
+            function drawRotated(degrees , target){
                 ctx.clearRect(0,0,image.width,image.height);
                 ctx.save();
                 ctx.translate(canvas.width/2,canvas.height/2);
@@ -237,7 +241,6 @@ app.directive('rotater', ['$document', function($document) {
 
                 } , 500);
             }
-
 
         }
     };
@@ -258,5 +261,8 @@ jQuery('document').ready(function(){
     lblWidths.sort(function(a, b){return b-a});
     jQuery('.input-group-addon.lbl').width(lblWidths[0]);
     //fix elem height of two main boxes
-    jQuery('.main-left').outerHeight()>jQuery('.main-center').outerHeight()?jQuery('.main-center,.main-right').outerHeight(jQuery('.main-left').outerHeight()):jQuery('.main-left,.main-right').outerHeight(jQuery('.main-center').outerHeight());
+    jQuery(window).on('resize getres' , function(){
+        jQuery('.main-left').outerHeight()>jQuery('.main-center').outerHeight()?jQuery('.main-center,.main-right').outerHeight(jQuery('.main-left').outerHeight()):jQuery('.main-left,.main-right').outerHeight(jQuery('.main-center').outerHeight());
+    }).trigger('getres');
+
 });

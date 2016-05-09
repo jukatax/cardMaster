@@ -182,7 +182,7 @@ gulp.task('copyCM2', function () {
 
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (callback) {
-    runSequence('styles', 'html', 'htmlToPhp', 'img', 'fonts', 'copy', 'js', 'copyCM2' , callback);
+    runSequence('styles', 'html', 'htmlToPhp', 'img', 'fonts', 'copy', 'js' , callback);
     //gulp.run('copyCM2');
     
 });
