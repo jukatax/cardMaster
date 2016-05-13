@@ -97,6 +97,7 @@ body {
         border-radius: 4px;
         margin: 0 auto;
         position: relative;
+        overflow: hidden;
         -webkit-transition: width 0.75s linear, height 0.75s linear;
         -moz-transition: width 0.75s linear, height 0.75s linear;
         -ms-transition: width 0.75s linear, height 0.75s linear;
@@ -201,6 +202,7 @@ body {
     body #printingContainer .card-preview {
       border: 1px solid #aaa;
       border-radius: 4px;
+      overflow: hidden;
       position: relative;
       -webkit-transition: all, 0.75s, linear;
       -moz-transition: all, 0.75s, linear;

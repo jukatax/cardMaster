@@ -170,6 +170,7 @@ body{
                          border-radius:4px;
                          margin:0 auto;
                          position:relative;
+                         overflow: hidden;
                          @include transition(width 0.75s linear , height 0.75s linear );
                          &.default{
                               border: 1px solid #aaa;
@@ -379,7 +380,7 @@ body{
           .card-preview{
                border:1px solid #aaa;
                border-radius:4px;
-               //margin:0 auto;
+               overflow: hidden;
                position:relative;
                @include transition(all , 0.75s , linear);
                &.default{
